@@ -1,0 +1,1 @@
+sitemap: https://news.eolang.org/sitemap.xml

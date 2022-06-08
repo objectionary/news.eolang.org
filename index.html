@@ -1,0 +1,73 @@
+---
+layout: default
+title: "News About EO Programming Language"
+description: |
+  Here we post most recent news about
+  EO programming language and 𝜑-calculus
+keywords:
+  - oop
+  - eolang
+---
+
+<article itemscope="" itemtype="http://schema.org/Blog">
+{% for post in paginator.posts %}
+  <div class="front" itemprop="blogPosts" itemscope="" itemtype="http://schema.org/BlogPosting">
+    <h1>
+      <a href="{{ post.url }}">
+        <span itemprop="name headline mainEntityOfPage">{{ post.title }}</span>
+      </a>
+    </h1>
+    <ul class="subline">
+      <li>
+        <time itemprop="author">
+          <a href="https://github.com/{{ post.author }}">@{{ post.author }}</a>
+        </time>
+      </li>
+      <li>
+        <time itemprop="datePublished dateModified" datetime="{{ post.date | date_to_xmlschema }}">
+          {{ post.date | date_to_string }}
+        </time>
+      </li>
+      <li>
+        <a href="{{ site.url }}{{ post.url }}#disqus_thread" itemprop="discussionUrl">comments</a>
+      </li>
+    </ul>
+    <div class="main" itemprop="description">
+      {{ post.excerpt }}
+    </div>
+    <p>
+      <a href="{{ post.url }}" itemprop="url">
+        Continue...
+      </a>
+    </p>
+  </div>
+{% endfor %}
+<!--
+
+  We have just a few posts, it's too early to do paginating. Uncomment
+  this blog when we have enough blog posts.
+
+  <div class="pagination">
+    <div class="left">
+      {% if paginator.previous_page %}
+        {% if paginator.previous_page == 1 %}
+          <a href="/"><i class="icon icon-fast-backward"></i></a>
+        {% else %}
+          <a href="/p/{{ paginator.previous_page }}"><i class="icon icon-fast-backward"></i></a>
+        {% endif %}
+      {% else %}
+        <span class="mute"><i class="icon icon-fast-backward"></i></span>
+      {% endif %}
+    </div>
+    page {{ paginator.page }} of {{ paginator.total_pages }}
+    <div class="right">
+      {% if paginator.next_page %}
+        <a href="/p/{{ paginator.next_page }}"><i class="icon icon-fast-forward"></i></a>
+      {% else %}
+        <span class="mute"><i class="icon icon-fast-forward"></i></span>
+      {% endif %}
+    </div>
+  </div>
+-->
+</article>
+

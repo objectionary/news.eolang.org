@@ -1,0 +1,42 @@
+title: News About EO Programming Language
+email: team@eolang.org
+description: >
+  Here we post most recent news about
+  EO programming language and 𝜑-calculus
+baseurl: ""
+url: "https://news.eolang.org"
+twitter_username: objectionary
+github_username: objectionary
+markdown: kramdown
+author:
+  name: "EO"
+  email: team@eolang.org
+encoding: utf-8
+timezone: Europe/Moscow
+permalink: :year-:month-:day-:title.html
+exclude:
+  - README.md
+  - Gemfile.lock
+  - Gemfile
+  - Rakefile
+  - LICENSE.txt
+  - id_rsa.enc
+
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap
+
+paginate: 8
+paginate_path: "p/:num"
+excerpt_separator: <!--more-->
+
+feed:
+  title: news.eolang.org
+  subtitle: News about EO programming language
+  path: rss.xml
+
+sass:
+  style: compressed
+  deploy_style: compressed
+  compile_in_place: false

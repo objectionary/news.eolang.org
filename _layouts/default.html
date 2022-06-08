@@ -1,0 +1,41 @@
+---
+layout: default
+---
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru"
+  itemscope="" itemtype="http://schema.org/WebPage">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="description" content="{{ page.description | xml_escape }}" />
+    <meta name="keywords" content="{{ page.keywords | join:', ' | xml_escape }}" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"/>
+    <link rel="shortcut icon" href="https://www.objectionary.com/cactus.png"/>
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/yegor256/tacit@gh-pages/tacit-css.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/yegor256/drops@gh-pages/drops.min.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+  </head>
+  <body>
+    <section>
+      <header class="header" id="header">
+        <div>
+          <a href="/">
+            <img src="https://www.objectionary.com/cactus.svg" class="logo" alt="EOLANG logo"/>
+          </a>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="/" title="Home">Home</a></li>
+            <li><a href="/rss.xml" title="RSS">RSS</a></li>
+          </ul>
+        </nav>
+      </header>
+      {{ content }}
+      <footer>
+        &copy; EOLANG.org, 2022
+      </footer>
+    </section>
+    <script>var disqus_shortname = 'blog-eolang-org';</script>
+    <script id="dsq-count-scr" src="//blog-eolang-org.disqus.com/count.js" async="async"></script>
+  </body>
+</html>

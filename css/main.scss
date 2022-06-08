@@ -1,0 +1,30 @@
+---
+---
+@charset 'utf-8';
+
+header,
+footer {
+	text-align: center;
+}
+
+section {
+	width: 40em;
+}
+
+article {
+	border: 0;
+}
+
+.logo {
+	width: 92px;
+	height: 92px;
+}
+
+.subline {
+	margin-left: 0;
+	li {
+		margin-right: 1em;
+		display: inline;
+		list-style: none;
+	}
+}
