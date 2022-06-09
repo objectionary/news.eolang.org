@@ -1,15 +1,8 @@
 ---
 layout: post
 date: 2022-06-09
-title: "Get rid of char object"
+title: "We Got Rid of Object 'char'"
 author: Graur
-description: |
-  Since `0.23.6` version of EO we get rid of char object at all.
-  Now, if you have to use character, you can just use `string` object instead.
-keywords:
-  - eolang
-  - updates
-  - 0.23.6
 ---
 
 Since `0.23.6` version of [EO](https://www.eolang.org) we get rid of `char` object.
