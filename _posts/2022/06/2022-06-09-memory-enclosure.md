@@ -5,7 +5,9 @@ title: "Memory Can't Be Empty"
 author: yegor256
 ---
 
-Until version 0.23.7 it was possible to use memory object just like this:
+Until version 0.23.7 it was possible to use
+[`memory`](https://github.com/objectionary/home/blob/master/objects/org/eolang/memory.eo)
+object just like this:
 
 ```
 memory > m
@@ -31,4 +33,5 @@ called an "enclosure".
 We also deleted the attribute `memory.is-empty`, since `memory` is always
 not empty.
 
-The same changes were applied to the object `cage`.
+The same changes were applied to the object
+[`cage`](https://github.com/objectionary/home/blob/master/objects/org/eolang/gray/memory.eo).
