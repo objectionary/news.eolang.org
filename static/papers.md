@@ -24,4 +24,4 @@ and 𝜑-calculus (in reverse chronological order):
 [EOLANG: Toward a new java-based object-oriented programming language](https://link.springer.com/chapter/10.1007/978-981-16-2765-1_30)
 
 
-If you publish something else, let us know.
+If you publish something, please [let us know](mailto:team@eolang.org).
