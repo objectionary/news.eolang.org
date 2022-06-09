@@ -3,14 +3,6 @@ layout: post
 date: 2022-06-08
 title: "What EO is for?"
 author: yegor256
-description: |
-  EO is a new experimental programming language, which
-  has its purpose and its own development strategy;
-  here I try to explain it
-keywords:
-  - eolang
-  - oop
-  - object-oriented programming
 ---
 
 [EO](https://www.eolang.org) is a new experimental programming language.
