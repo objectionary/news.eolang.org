@@ -14,7 +14,7 @@ keywords:
 
 Since `0.23.6` version of [EO](https://www.eolang.org) we get rid of `char` object.
 We want to simplify core of the language and believe that this object can be easily replaced 
-with its actual representation, i.e. an array of bytesю
+with its actual representation, i.e. an array of bytes.
 Now, if you want to get the character, you can just use `string` object instead.
 All of these examples are valid strings: `"\u0123"`, `"h"`, `"\t"`, `"\n"` and `"\07"`.
 We get rid of `string.char-at` and `bytes.as-char` objects.
