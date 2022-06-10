@@ -9,38 +9,39 @@ keywords:
   - eolang
 ---
 
-<article itemscope="" itemtype="http://schema.org/Blog">
 {% for post in paginator.posts %}
-  <div class="front" itemprop="blogPosts" itemscope="" itemtype="http://schema.org/BlogPosting">
-    <h1>
-      <a href="{{ post.url }}">
-        <span itemprop="name headline mainEntityOfPage">{{ post.title }}</span>
-      </a>
-    </h1>
-    <ul class="subline">
-      <li>
-        <time itemprop="author">
-          <a href="https://github.com/{{ post.author }}">@{{ post.author }}</a>
-        </time>
-      </li>
-      <li>
-        <time itemprop="datePublished dateModified" datetime="{{ post.date | date_to_xmlschema }}">
-          {{ post.date | date_to_string }}
-        </time>
-      </li>
-      <li>
-        <a href="{{ site.url }}{{ post.url }}#disqus_thread" itemprop="discussionUrl">comments</a>
-      </li>
-    </ul>
-    <div class="main" itemprop="description">
-      {{ post.excerpt }}
+  <article itemscope="" itemtype="http://schema.org/Blog">
+    <div class="front" itemprop="blogPosts" itemscope="" itemtype="http://schema.org/BlogPosting">
+      <h1>
+        <a href="{{ post.url }}">
+          <span itemprop="name headline mainEntityOfPage">{{ post.title }}</span>
+        </a>
+      </h1>
+      <ul class="subline">
+        <li>
+          <time itemprop="author">
+            <a href="https://github.com/{{ post.author }}">@{{ post.author }}</a>
+          </time>
+        </li>
+        <li>
+          <time itemprop="datePublished dateModified" datetime="{{ post.date | date_to_xmlschema }}">
+            {{ post.date | date_to_string }}
+          </time>
+        </li>
+        <li>
+          <a href="{{ site.url }}{{ post.url }}#disqus_thread" itemprop="discussionUrl">comments</a>
+        </li>
+      </ul>
+      <div class="main" itemprop="description">
+        {{ post.excerpt }}
+      </div>
+      <p>
+        <a href="{{ post.url }}" itemprop="url">
+          Continue...
+        </a>
+      </p>
     </div>
-    <p>
-      <a href="{{ post.url }}" itemprop="url">
-        Continue...
-      </a>
-    </p>
-  </div>
+  </article>
 {% endfor %}
 <!--
 
@@ -69,5 +70,4 @@ keywords:
     </div>
   </div>
 -->
-</article>
 
