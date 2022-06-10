@@ -23,5 +23,7 @@ and 𝜑-calculus (in reverse chronological order):
 * Hadi Saleh, Sergey Zykov, Alexander Legalov (2021),
 [EOLANG: Toward a new java-based object-oriented programming language](https://link.springer.com/chapter/10.1007/978-981-16-2765-1_30)
 
+You may also want to watch
+[this YouTube playlist](https://www.youtube.com/playlist?list=PLaIsQH4uc08wnU7X5ZKdDHjJ8zOb1sUIl).
 
 If you publish something, please [let us know](mailto:team@eolang.org).
