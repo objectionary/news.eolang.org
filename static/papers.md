@@ -20,7 +20,7 @@ and other related projects (in reverse chronological order):
 [Reducing Programs to Objects](https://arxiv.org/abs/2112.11988)
 
 * Yegor Bugayenko (2021),<br/>
-[EOLANG and phi-calculus](https://arxiv.org/abs/2111.13384)
+[EOLANG and 𝜑-calculus](https://arxiv.org/abs/2111.13384)
 
 * Hadi Saleh, Sergey Zykov, Alexander Legalov (2021),<br/>
 [EOLANG: Toward a new java-based object-oriented programming language](https://link.springer.com/chapter/10.1007/978-981-16-2765-1_30)
