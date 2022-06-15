@@ -5,8 +5,10 @@ date: 2022-06-09
 permalink: /papers.html
 ---
 
-Here is a full list of papers about EO programming language
-and 𝜑-calculus (in reverse chronological order):
+Here is a full list of papers about 𝜑-calculus,
+[EO](https://www.eolang.org) programming language,
+[Polystat](https://www.polystat.org),
+and other related projects (in reverse chronological order):
 
 * Yegor Bugayenko (2022),<br/>
 [On the Origins of Objects by Means of Careful Selection](https://arxiv.org/abs/2206.02585)
