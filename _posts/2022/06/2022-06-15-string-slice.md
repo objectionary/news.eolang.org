@@ -1,7 +1,7 @@
 ---
 layout: post
 date: 2022-06-15
-title: "Introduced `string.slice` Object"
+title: "Introduced string.slice Object"
 author: Graur
 ---
 
