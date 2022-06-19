@@ -22,6 +22,9 @@ and other related projects (in reverse chronological order):
 * Yegor Bugayenko (2021),<br/>
 [EOLANG and 𝜑-calculus](https://arxiv.org/abs/2111.13384)
 
+* Hadi Saleh, Joseph Afriyie Attakorah, Sergey Zykov, Alexander Legalov,<br/>
+[Exploring the EOLANG-Java Integration and Interoperability](https://www.sciencedirect.com/science/article/pii/S1877050921019736)
+
 * Hadi Saleh, Sergey Zykov, Alexander Legalov (2021),<br/>
 [EOLANG: Toward a new java-based object-oriented programming language](https://link.springer.com/chapter/10.1007/978-981-16-2765-1_30)
 
