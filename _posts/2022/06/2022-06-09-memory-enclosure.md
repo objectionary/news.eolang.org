@@ -34,4 +34,4 @@ We also deleted the attribute `memory.is-empty`, since `memory` is always
 not empty.
 
 The same changes were applied to the object
-[`cage`](https://github.com/objectionary/home/blob/master/objects/org/eolang/gray/memory.eo).
+[`cage`](https://github.com/objectionary/home/blob/master/objects/org/eolang/cage.eo).
