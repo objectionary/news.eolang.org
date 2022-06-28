@@ -12,6 +12,8 @@ in Objectionary are not static: they get new versions very often.
 That's why, in order to stabilize your build you may want
 to use their fixed versions.
 
+<!--more-->
+
 Here is how, in your `pom.xml` (`hash` must include Git commit hash
 from [`objectionary/home`](https://github.com/objectionary/home)):
 
