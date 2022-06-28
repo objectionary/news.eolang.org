@@ -21,9 +21,9 @@ from [`objectionary/home`](https://github.com/objectionary/home)):
       <plugin>
         <groupId>org.eolang</groupId>
         <artifactId>eo-maven-plugin</artifactId>
-	    <configuration>
-	      <hash>0d94362</hash>
-	    </configuration>
+        <configuration>
+          <hash>0d94362</hash>
+        </configuration>
       </plugin>
     </plugins>
   </build>
