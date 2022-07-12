@@ -27,6 +27,13 @@ header {
 	padding-bottom: 1em;
 }
 
+.fork-me {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 8em;
+}
+
 article {
 	border: 0;
 	padding: 2em;
@@ -43,8 +50,8 @@ article {
 }
 
 .logo {
-	width: 92px;
-	height: 92px;
+	width: 5em;
+	height: 5em;
 }
 
 .subline {
