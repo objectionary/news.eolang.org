@@ -1,4 +1,4 @@
-<img alt="logo" src="https://www.objectionary.com/cactus.svg" height="100px" />
+<img alt="logo" src="https://www.objectionary.com/cactus.svg" height="92px" />
 
 Check this blog at [news.eolang.org](https://news.eolang.org).
 
@@ -11,6 +11,7 @@ $ bundle update
 $ bundle exec jekyll serve
 ```
 
-In about 3-4 minutes of building you should be able to see the blog
-at `http://localhost:4000`. Make your changes and run `jekyll` again. If
-everything is fine, submit a pull request.
+In a few seconds of building you should be able to see the blog
+at `http://localhost:4000`. Make your changes and refresh the page in the browser.
+You should see the changes.
+If everything looks fine, submit a pull request.
