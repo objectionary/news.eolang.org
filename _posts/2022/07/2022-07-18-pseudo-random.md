@@ -18,7 +18,7 @@ available in `eo.lang.math` package since version `0.1.2`. It decorates `float`
 and represents a value from random sequence.
 
 Note that the generator is [pseudo-random](https://en.wikipedia.org/wiki/Pseudorandom_number_generator).
-That means that generated sequence can be reproduced given initial seed value which is 
+In short it means that generated sequence can be reproduced given initial seed value which is 
 not what true randomness normally assumes.  
 In most applied cases pseudo-randomness is perfectly 
 enough. Hereafter terms _random_ and _pseudo-random_ will be used interchangeably. 
