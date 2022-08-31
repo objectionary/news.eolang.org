@@ -104,4 +104,18 @@ Here, `/org/eolang/parser/add-refs.xsl` is the XSL file available in classpath
 thanks to the `eo-parser.jar`, while `/org/foo/simple.xsl` is the XSL you
 have in your own project in `src/main/resources/org/foo/simple.xml`.
 
+If, instead of adding XSL stylesheets to the default collection,
+you want to use your own set of XSL stylesheets, do this
+(mind the usage of `empty()`):
+
+```java
+XML after = new Xsline(
+  new TrClasspath<>(
+    new ParsingTrain().empty(),
+    "/org/eolang/parser/add-refs.xsl",
+    "/org/foo/simple.xsl"
+  ).back()
+).pass(xmir);
+```
+
 That's it :)
