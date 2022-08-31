@@ -1,7 +1,7 @@
 ---
 layout: post
 date: 2022-08-31
-title: "New dataization result of While object"
+title: "New Dataization Result of While Object"
 author: Graur
 ---
 
