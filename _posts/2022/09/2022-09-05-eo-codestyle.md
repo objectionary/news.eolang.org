@@ -1,3 +1,11 @@
+---
+layout: post
+date: 2022-09-05
+title: "EO codestyle"
+author: mcjohn974
+---
+
+
 One of the goals of EOlang was clear and readable code. 
 That's why it has some codestyle checks processed by the compiler.
 
