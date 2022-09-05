@@ -10,3 +10,8 @@ than one whitespace between words, no more than one blank line between
 objects and attributes, no blank lines in code of one attribute,
 no tabs. If a code looks ugly without extra blank lines, it is a good 
 marker that you should create a new object or attribute.
+
+EOlang controls not only indentations, but also naming. You can’t 
+create an object or a attribute with first capital letter.
+
+EO compiler checks all useless includes, and forces the programmer to remove them.
