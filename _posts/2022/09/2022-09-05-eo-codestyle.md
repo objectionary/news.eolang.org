@@ -2,7 +2,7 @@
 layout: post
 date: 2022-09-05
 title: "EO codestyle"
-author: mcjohn974
+author: MCJOHN974
 ---
 
 
