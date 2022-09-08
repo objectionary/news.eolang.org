@@ -10,6 +10,14 @@ Here is a full list of papers about 𝜑-calculus,
 [Polystat](https://www.polystat.org),
 and other related projects (in reverse chronological order):
 
+* Vitaliy Korbashov, Nikolai Kudasov, Mikhail Olokin, and Violetta Sim<br/>
+[Detecting unjustified assumptions in subclasses via EO representation](https://arxiv.org/abs/2209.01803)<br/>
+arXiv
+
+* Nikolai Kudasov, Mikhail Olokin, Oleksii Potyomkin, Nikolay Shilov, and Maxim Stepanov (2022)<br/>
+[Detecting unanticipated mutual recursion using Elegant Objects representation of object-oriented programs](https://arxiv.org/abs/2209.01803),<br/>
+arXiv
+
 * Yegor Bugayenko (2022),<br/>
 [On the Origins of Objects by Means of Careful Selection](https://arxiv.org/abs/2206.02585),<br/>
 arXiv
