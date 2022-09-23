@@ -91,6 +91,9 @@ will stay in `target/classes` before the JAR is packaged. Also, if for
 some magic reason `EOorg/EOeolang/**.class` will remain their, they will
 also be deleted.
 
+First, only what is mentioned in `keepBinaries` will stay.
+Second, what is mentioned in `removeBinaries` will be deleted.
+
 I think it's a good practice to use `keepBinaries` option in your
 library, just to be safe and sure that nothing aside from your compiled
 atoms get into the JAR.
