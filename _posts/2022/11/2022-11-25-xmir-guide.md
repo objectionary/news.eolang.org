@@ -5,11 +5,11 @@ title: "XMIR, a Quick Tour"
 author: yegor256
 ---
 
-XMIR is a dialect of XML, which we use to represent a parsed
-  EO program. It is a pretty simple format, which has a few
+XMIR is a dialect of [XML](https://en.wikipedia.org/wiki/XML), which we use to represent a parsed
+  [EO](https://www.eolang.org) program. It is a pretty simple format, which has a few
   important tricks, which I share below in this blog post. You may
-  also want to check our XML Schema:
-  [XMIR.xsd](https://raw.githubusercontent.com/objectionary/eo/gh-pages/XMIR.xsd).
+  also want to check our [schema](https://en.wikipedia.org/wiki/XML_schema):
+  [`XMIR.xsd`](https://raw.githubusercontent.com/objectionary/eo/gh-pages/XMIR.xsd).
 
 <!--more-->
 
