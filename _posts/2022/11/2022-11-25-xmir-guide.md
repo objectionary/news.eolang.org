@@ -30,7 +30,8 @@ If you parse it using `Syntax` class from eo-parser (without
 any optimizations), you will get this XMIR:
 
 ```xml
-<program ms="401" name="test-1" time="2022-11-25T11:50:45.419417Z" version="1.0-SNAPSHOT">
+<program ms="401" name="test-1"
+  time="2022-11-25T11:50:45.419417Z" version="1.0-SNAPSHOT">
   <listing>[] &gt; app
   [x] &gt; foo
     QQ.io.stdout &gt; @
@@ -38,8 +39,7 @@ any optimizations), you will get this XMIR:
         "Hello, %s\n"
         x
   foo &gt; @
-    "world!"
-</listing>
+    "world!"</listing>
   <errors/>
   <sheets/>
   <objects>
@@ -185,4 +185,50 @@ sources. It may be one of the following five:
 <o data="bool">TRUE</o>
 <o data="bytes">world!</o>
 ```
+
+## References
+
+If you apply [`add-refs.xsl`](https://github.com/objectionary/eo/blob/master/eo-parser/src/main/resources/org/eolang/parser/add-refs.xsl) optimization XSL stylesheet to the document above,
+an additional attribute `ref` will be added to some `<o>` elements. This
+  attribute is added when it's obvious from the available information what
+  object is referred by the attribute `base`. For example, if this is the
+  code in EO:
+
+```
+[] > foo
+  42 > a
+  a.plus 1 > @
+```
+
+Then, the following XMIR will be created by the parser (I removed all
+the meta information and show you only the block with `<objects>`):
+
+```xml
+<o abstract="" name="foo" line="1">
+  <o name="a" data="int" line="2">42</o>
+  <o name="@" base=".plus" line="3">
+    <o base="a" line="3">1</o>
+    <o data="int" line="4">1</o>
+  </o>
+</o>
+```
+
+After the application of `add-refs.xsl`, the XMIR will look like this
+(pay attention the attribute `ref` added to `<o base="a">`):
+
+```xml
+<o abstract="" name="foo" line="1">
+  <o name="a" data="int" line="2">42</o>
+  <o name="@" base=".plus" line="3">
+    <o base="a" line="3" ref="2">1</o> <!-- here! -->
+    <o data="int" line="4">1</o>
+  </o>
+</o>
+```
+
+Using the information from `ref` attributes you can distinguish `base`
+references to objects that are not visible in the current document (they
+don't have `ref` attribute) from objects that are present in the current
+document (they have `ref` attribute with the value equal to the number
+of the line where the object is found).
 
