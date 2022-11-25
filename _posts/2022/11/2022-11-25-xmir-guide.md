@@ -129,7 +129,7 @@ There may be an optional element `<metas>` with a list of `<meta>` elements. For
   if my source code would have this meta:
 
 ```
-+architect yegor256
++architect yegor256@gmail.com
 ```
 
 I would see the following in my XMIR:
