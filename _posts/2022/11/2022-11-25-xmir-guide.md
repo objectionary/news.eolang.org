@@ -126,10 +126,10 @@ The names you see in the `<sheet>` elements are the names of the files.
 ## Metas
 
 There may be an optional element `<metas>` with a list of `<meta>` elements. For example,
-  if my source code would have this meta:
+  if my source code would have this meta at the 3rd line of the source file:
 
 ```
-+architect yegor256@gmail.com
++alias foo com.example.foo
 ```
 
 I would see the following in my XMIR:
@@ -138,10 +138,11 @@ I would see the following in my XMIR:
 <program>
   [..]
    <metas>
-    <meta line="23">
-      <head>architect</head>
-      <tail>yegor256@gmail.com</tail>
-      <part>yegor256@gmail.com</part>
+    <meta line="3">
+      <head>alias</head>
+      <tail>foo com.example.foo</tail>
+      <part>foo</part>
+      <part>com.example.foo</part>
     </meta>
     [..]
   </metas>
