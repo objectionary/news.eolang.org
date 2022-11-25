@@ -43,25 +43,22 @@ keywords:
     </div>
   </article>
 {% endfor %}
+
 <div class="pagination">
-  <div class="left">
-    {% if paginator.previous_page %}
-      {% if paginator.previous_page == 1 %}
-        <a href="/"><i class="icon icon-fast-backward"></i></a>
-      {% else %}
-        <a href="/p/{{ paginator.previous_page }}"><i class="icon icon-fast-backward"></i></a>
-      {% endif %}
+  {% if paginator.previous_page %}
+    {% if paginator.previous_page == 1 %}
+      <a href="/">◀</a>
     {% else %}
-      <span class="mute"><i class="icon icon-fast-backward"></i></span>
+      <a href="/p/{{ paginator.previous_page }}">◀</a>
     {% endif %}
-  </div>
+  {% else %}
+    <span class="mute">◀</span>
+  {% endif %}
   page {{ paginator.page }} of {{ paginator.total_pages }}
-  <div class="right">
-    {% if paginator.next_page %}
-      <a href="/p/{{ paginator.next_page }}"><i class="icon icon-fast-forward"></i></a>
-    {% else %}
-      <span class="mute"><i class="icon icon-fast-forward"></i></span>
-    {% endif %}
-  </div>
+  {% if paginator.next_page %}
+    <a href="/p/{{ paginator.next_page }}">▶</a>
+  {% else %}
+    <span class="mute">▶</span>
+  {% endif %}
 </div>
 

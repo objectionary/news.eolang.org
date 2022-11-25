@@ -7,7 +7,8 @@ body {
 }
 
 header,
-footer {
+footer,
+.pagination {
 	text-align: center;
 }
 
@@ -61,4 +62,8 @@ article {
 		display: inline;
 		list-style: none;
 	}
+}
+
+pre code {
+  line-height: 1.4em;
 }
