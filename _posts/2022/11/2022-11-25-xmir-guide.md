@@ -95,7 +95,8 @@ The `<errors>` element is always there, but it may either be empty, which means 
 
 The errors with the `warning` severity may more or less safely be ignored. The
   errors with the `error` severity will lead to failures in further compilation
-  and processing.
+  and processing. There could also be elements with the `critical` severity,
+  which must stop the processing of the document immediately.
 
 ## Sheets
 
