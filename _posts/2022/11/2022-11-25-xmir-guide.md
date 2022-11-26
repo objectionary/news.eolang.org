@@ -293,5 +293,5 @@ You will get additional attribute `loc` added to each `<o>` element:
 </o>
 ```
 
-Locators are absolute and unique coordinates of any object in the entire object "Universe".
+Locators are absolute and unique coordinates of any object in the entire object "Universe."
 
