@@ -187,6 +187,41 @@ sources. It may be one of the following five:
 <o data="bytes">world!</o>
 ```
 
+## Methods
+
+Our parser is [top-down](https://en.wikipedia.org/wiki/Top-down_parsing).
+Technically, this means that it reads the source file line by
+line, starting from the top and going to the bottom. When it meets this
+source code:
+
+```
+a.times
+  b
+```
+
+The following XMIR is generated  (I removed all
+the meta information and show you only the block with `<objects>`):
+
+```xml
+<o base="a"/>
+<o base=".times" method="">
+  <o base="b"/>
+</o>
+```
+
+Then, we apply
+[`wrap-method-calls.xsl`](https://github.com/objectionary/eo/blob/master/eo-parser/src/main/resources/org/eolang/parser/wrap-method-calls.xsl) tranformation and the XMIR is tranformed to:
+
+```xml
+<o base=".times">
+  <o base="a"/>
+  <o base="b"/>
+</o>
+```
+
+Now, the dot in front of the `base` attribute tells us that the first `<o>` kid XML element
+is the object to which the dot notation refers.
+
 ## References
 
 If you apply [`add-refs.xsl`](https://github.com/objectionary/eo/blob/master/eo-parser/src/main/resources/org/eolang/parser/add-refs.xsl) optimization XSL stylesheet to the document above,
@@ -201,8 +236,7 @@ an additional attribute `ref` will be added to some `<o>` elements. This
   a.plus 1 > @
 ```
 
-Then, the following XMIR will be created by the parser (I removed all
-the meta information and show you only the block with `<objects>`):
+Then, the following XMIR will be created by the parser:
 
 ```xml
 <o abstract="" name="foo" line="1">
