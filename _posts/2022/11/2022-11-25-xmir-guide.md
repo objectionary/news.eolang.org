@@ -163,8 +163,11 @@ The `<objects/>` element contains object, as they are found in the source
   * `abstract` is the attribute that you will see only in abstract objects;
   * `name` is the name of the object, if the object has it;
   * `base` may refer to an abstract object that is being copied;
-  * `method` may be present if the `base` starts with a dot;
-  * `data` may be present if the object is the data object.
+  * `data` may be present if the object is the data object;
+  * `loc` may contain a "locator" of the object.
+
+There could be other attributes too, but they are even more optional
+and supplementary.
 
 ## Data Objects
 
@@ -195,7 +198,7 @@ line, starting from the top and going to the bottom. When it meets this
 source code:
 
 ```
-a.times
+a.times > x
   b
 ```
 
@@ -204,7 +207,7 @@ the meta information and show you only the block with `<objects>`):
 
 ```xml
 <o base="a"/>
-<o base=".times" method="">
+<o base=".times" method="" name="x">
   <o base="b"/>
 </o>
 ```
@@ -213,14 +216,15 @@ Then, we apply
 [`wrap-method-calls.xsl`](https://github.com/objectionary/eo/blob/master/eo-parser/src/main/resources/org/eolang/parser/wrap-method-calls.xsl) tranformation and the XMIR is tranformed to:
 
 ```xml
-<o base=".times">
+<o base=".times" name="x">
   <o base="a"/>
   <o base="b"/>
 </o>
 ```
 
 Now, the dot in front of the `base` attribute tells us that the first `<o>` kid XML element
-is the object to which the dot notation refers.
+is the object to which the dot notation refers. Also, pay attention that the `name` attribute
+was moved to the right place.
 
 ## References
 
@@ -267,3 +271,26 @@ don't have `ref` attribute) from objects that are present in the current
 document (they have `ref` attribute with the value equal to the number
 of the line where the object is found).
 
+## Locators
+
+If you apply [`set-locators.xsl`](https://github.com/objectionary/eo/blob/master/eo-parser/src/main/resources/org/eolang/parser/set-locators.xsl) optimization XSL stylesheet to the following
+XMIR document:
+
+```xml
+<o base=".times" name="x">
+  <o base="a"/>
+  <o base="b"/>
+</o>
+```
+
+You will get additional attribute `loc` added to each `<o>` element:
+
+```xml
+```xml
+<o base=".times" name="x" loc="Φ.x">
+  <o base="a" loc="Φ.x.ρ"/>
+  <o base="b" loc="Φ.x.α0"/>
+</o>
+```
+
+Locators are absolute coordinates of any object in the entire object "Universe".
