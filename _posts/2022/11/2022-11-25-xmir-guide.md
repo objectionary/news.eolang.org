@@ -295,3 +295,9 @@ You will get additional attribute `loc` added to each `<o>` element:
 
 Locators are absolute and unique coordinates of any object in the entire object "Universe."
 
+<hr/>
+
+This description of XMIR is not complete. If you want me to explain
+something else in more details, please post a message below this blog post
+and I will add the content.
+
