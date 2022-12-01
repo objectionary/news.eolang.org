@@ -10,6 +10,9 @@ Here is a full list of papers about 𝜑-calculus,
 [Polystat](https://www.polystat.org),
 and other related projects (in reverse chronological order):
 
+* Joseph Afriyie Attakorah, Vitaliy Korzun, Eugene Popov, Hadi Saleh (2022),
+[EOLANG Book](https://www.objectionary.com/eo-book/book.pdf)
+
 * Легалов А.И., Бугаенко Е.Г., Чуйкин Н.К., Шипицин М.В., Рябцев Я.И., Каменский А.Н. (2022),
 [Трансформация модели памяти языка программирования C в объектно-ориентированное представление на языке EO](https://www.mais-journal.ru/jour/article/view/1715),
 Моделирование и анализ информационных систем, 9(3):246-264.
