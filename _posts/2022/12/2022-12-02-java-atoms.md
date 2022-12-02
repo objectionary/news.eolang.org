@@ -5,7 +5,7 @@ title: "How to Create a Java Atom"
 author: yegor256
 ---
 
-There are "atoms" in EO language, which are objects implemented by
+There are "atoms" in [EO](https://www.eolang.org) language, which are objects implemented by
 the runtime platform, not by a composition of other EO objects. Most
 notable examples of atoms are `int.plus`, `float.times`, and
 `bool.while`. Here is a quick intruction to creating your own
@@ -123,7 +123,7 @@ public final class EOmd5Test {
 }
 ```
 
-Then, make a EO test for your atom:
+Then, make an EO test for your atom:
 
 ```
 +alias org.eolang.hamcrest.assert-that
@@ -136,6 +136,12 @@ Then, make a EO test for your atom:
       "Hello, world!"
     $.equal-to
       "A6F5EC87EB4E9027295"
+```
+
+Run them both using our Maven Plugin:
+
+```
+mvn clean test
 ```
 
 That's it.
