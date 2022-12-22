@@ -6,10 +6,14 @@ author: yegor256
 ---
 
 In the recently released version [0.28.14](https://github.com/objectionary/eo/releases/tag/0.28.14)
-we changed the iterating algorithm of the `bool.while` object. Until now,
-by our mistake, it was imperative. Now, it's declarative. The difference
-is in the result of it. The previous imperative version was "returning"
-a data object. The new declarative one "is" the latest body of the loop.
+we've changed the iterating algorithm of the
+[`bool.while`](https://github.com/objectionary/home/blob/0.28.14/objects/org/eolang/bool.eo#L51-L56)
+object. Until now,
+by our mistake, it was imperative. Now, it's
+[declarative](https://en.wikipedia.org/wiki/Declarative_programming).
+The difference is in the result of its dataization.
+The previous imperative version was "returning" a data object.
+The new declarative one returns the latest body of the loop (without dataization!).
 The difference is huge (thanks to it, many of our tests broke).
 
 <!--more-->
