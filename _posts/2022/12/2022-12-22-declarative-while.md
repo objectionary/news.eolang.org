@@ -32,9 +32,10 @@ while($, ^, x):
   return last;
 ```
 
-Here, the `^` is the parent of the `while`, dataization of which returns a boolean value;
-the `$` is the `while` object itself; and `x` is the object that is encapsulated
-by the `while` object --- the body of the loop.
+Here, `^` is the parent of the `while` object, dataization of which returns a boolean value;
+`$` is the `while` object itself;
+and `x` is the object that is encapsulated
+by the `while` object --- the _body_ of the [loop](https://en.wikipedia.org/wiki/For_loop).
 
 Consider this simple loop:
 
