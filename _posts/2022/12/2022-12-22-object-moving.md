@@ -65,8 +65,7 @@ bool.if
   "right"
 ```
 
-And, finally, the actual adoption happens when we take an closed object
-and re-bind its `^` attribute:
+Also, we can take a closed object and re-bind its `^` attribute:
 
 ```
 b > y
