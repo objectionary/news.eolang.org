@@ -66,7 +66,7 @@ loops in Java or Python, where variables are mutable and evaluations are eager.
 In EO we have the opposite paradigm: variables are immutable and, more importantly,
 evaluations are [lazy](https://en.wikipedia.org/wiki/Lazy_evaluation).
 
-The `while` object first dataizes the body of the loop only when the result
+The `while` object dataizes the body of the loop only when the result
 of dataization may be ignored. However, the result of the last dataization in the loop
 is important because it is what the `while` object "is" --- it is the body
 of the loop after all pre-exit dataizations. In the example above, the `x.write 2` is
@@ -77,7 +77,7 @@ what it writes into memory, the following holds:
 w.eq 2
 ```
 
-How is it possible to rewrite this code in order to make its flow of dataizations
+You may wonder, how is it possible to rewrite this code in order to make its flow of dataizations
 be the following (a traditional imperative expectation, which is almost what we've had in EO before
 the recent changes):
 
