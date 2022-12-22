@@ -49,7 +49,7 @@ book > x
 Here, `^` (after the colon) is the name of the attribute to be bound to `b`.
 The `x` object created will have `^` bound to `b`.
 
-Interesting to mention that now, with the help of this new object adoption mechanism,
+It is interesting to mention that now, with the help of this new object adoption mechanism,
 instead of this:
 
 ```
