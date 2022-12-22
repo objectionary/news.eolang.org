@@ -64,7 +64,9 @@ seq > w
 This may look counter-intuitive, but only because you may be used to imperative
 loops in Java or Python, where variables are mutable and evaluations are eager.
 In EO we have the opposite paradigm: variables are immutable and, more importantly,
-evaluations are [lazy](https://en.wikipedia.org/wiki/Lazy_evaluation).
+evaluations are [lazy](https://en.wikipedia.org/wiki/Lazy_evaluation). Making the
+body of the loop affecting the condition of it --- this is what conflicts with the
+laziness nature of EO.
 
 The `while` object dataizes the body of the loop only when the result
 of dataization may be ignored. However, the result of the last dataization in the loop
