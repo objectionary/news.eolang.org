@@ -83,7 +83,7 @@ the recent changes):
 
 ```
 memory -1 > x
-seq > w
+seq > w2
   x.lt 1       # TRUE (x=-1)
   x.write 0
   x.lt 1       # TRUE (x=0)
@@ -97,7 +97,7 @@ The following code would work:
 ```
 memory -1 > x
 memory 0 > i
-while. > w
+while. > w2
   []
     if. > @
       x.lt 1
