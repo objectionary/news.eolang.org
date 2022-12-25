@@ -62,14 +62,25 @@ seq > w
 ```
 
 This may look counter-intuitive, but only because you may be used to imperative
-loops in Java or Python, where variables are mutable and evaluations are eager.
+loops in Java or Python, where variables are mutable and evaluations are "eager."
 In EO we have the opposite paradigm: variables are immutable and, more importantly,
-evaluations are [lazy](https://en.wikipedia.org/wiki/Lazy_evaluation). Making the
+evaluations are "[lazy](https://en.wikipedia.org/wiki/Lazy_evaluation)." Making the
 body of the loop affecting the condition of it --- this is what conflicts with the
 laziness nature of EO.
 
-The `while` object dataizes the body of the loop only when the result
-of dataization may be ignored. However, the result of the last dataization in the loop
+An imperative algorithm checks the head of the loop (the condition) and then,
+if the head was true, it evaluates the body. If the head was false, the algorithm
+exits and returns nothing. This is how the [`while` statement](https://en.wikipedia.org/wiki/While_loop)
+works in C++, Java, and other object-oriented imperative languages.
+
+To the contrary, expecting the algorithm to be declarative and lazy would entail
+it 1) to return the result of the last evaluation of the body and 2) to not
+evaluate it. In other words, a declarative and lazy loop equals to its body,
+evaluated until the head is false.
+
+The new declarative version of the `while` object in EO behaves exactly this way:
+it dataizes the body only when the result of dataization may be ignored.
+The result of the last dataization in the loop
 is important because it is what the `while` object "is" --- it is the body
 of the loop after all pre-exit dataizations. In the example above, the `x.write 2` is
 what the `while` object is (and the `seq` object too). Since `memory.write` is
