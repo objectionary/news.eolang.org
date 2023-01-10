@@ -10,7 +10,7 @@ Here is a full list of papers about 𝜑-calculus,
 [Polystat](https://www.polystat.org),
 and other related projects (in reverse chronological order):
 
-Vadim Piven and Sergey Zykov (2022),
+* Vadim Piven and Sergey Zykov (2022),
 [Assessment of static type checking compliance of EOLANG](https://www.sciencedirect.com/science/article/pii/S1877050922013795),
 Proceedings of the 26th International Conference on Knowledge-Based and Intelligent Information & Engineering Systems (KES).
 
