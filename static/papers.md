@@ -45,7 +45,7 @@ arXiv
 [EOLANG and 𝜑-calculus](https://arxiv.org/abs/2111.13384),
 arXiv
 
-* Hadi Saleh, Joseph Afriyie Attakorah, Sergey Zykov, Alexander Legalov,
+* Hadi Saleh, Joseph Afriyie Attakorah, Sergey Zykov, Alexander Legalov (2021),
 [Exploring the EOLANG-Java Integration and Interoperability](https://www.sciencedirect.com/science/article/pii/S1877050921019736),
 Procedia Computer Science, Volume 192, pp. 4560-4569
 
