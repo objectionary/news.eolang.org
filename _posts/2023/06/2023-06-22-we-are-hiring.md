@@ -35,4 +35,4 @@ You will get this from us:
 
 When you decide to apply, be prepared to share this data with us (this is what we pay attention to, in order of importance): years of experience (and company names); education degree (BSc, MSc, PhD, etc.); h-index; books; patents; open source projects; GitHub followers; industry certifications; English level; StackOverflow reputation; blogs and vlogs; non-for-profit activities; public speaking experience; Twitter followers.
 
-Apply to jobs@eolang.org (we reply to all emails).
+Apply to [jobs@eolang.org](mailto:jobs@eolang.org) (we reply to all emails).
