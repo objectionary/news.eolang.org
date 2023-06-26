@@ -15,14 +15,15 @@ That's why we've created an automated pull system for new releases of EO librari
 The process of creating a release of EO libraries consists of three main stages: releasing the EO library, 
 publishing it on Maven Central and on the GitHub of this library in the `gh-pages` branch, and adding EO objects from 
 the `gh-pages` branch of this library to [Objectionary Home](https://github.com/objectionary/home) repository. 
-Until recently, the last stage was performed manually with the help of a script that added modified files by the library's
-URL, after which a pull request was created. And that consisted of following steps:
+Until recently, the last stage was performed manually with the help of a script that added modified files by the 
+library's URL, after which a pull request was created. And that stage consisted of the following steps:
 
 1.To create a pull request in `objectionary/home` by `pull.sh` script in a separate git branch (the name of the branch doesn't matter):
    ```shell
    ./pull.sh objectionary/eo
    ```
-This will update all `.eo` files in `gh-pages` from `objectionary/eo`. It will also change the corresponding versions of the eo objects (e.g. from the `+version` metadata) in the `objectionary/home` repository.
+This update all `.eo` files in `gh-pages` from `objectionary/eo`. 
+It also changes the corresponding versions of the eo objects (e.g. from the `+version` metadata) in the `objectionary/home` repository.
 
 2.To check and to remove manually either unused or old files. Script didn't do it.
 
