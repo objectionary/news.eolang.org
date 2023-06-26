@@ -16,9 +16,21 @@ The process of creating a release of EO libraries consists of three main stages:
 publishing it on Maven Central and on the GitHub of this library in the `gh-pages` branch, and adding EO objects from 
 the `gh-pages` branch of this library to [Objectionary Home](https://github.com/objectionary/home) repository. 
 Until recently, the last stage was performed manually with the help of a script that added modified files by the library's
-URL, after which a pull request was created.
+URL, after which a pull request was created. And that consisted of following steps:
 
-To avoid manual changes we created auto pulling daily run script. It runs at `00:00` every day to check for new releases of [Objectionary](https://github.com/objectionary/) libraries. 
+1.To create a pull request in `objectionary/home` by `pull.sh` script in a separate git branch (the name of the branch doesn't matter):
+   ```shell
+   ./pull.sh objectionary/eo
+   ```
+This will update all `.eo` files in `gh-pages` from `objectionary/eo`. It will also change the corresponding versions of the eo objects (e.g. from the `+version` metadata) in the `objectionary/home` repository.
+
+2.To check and to remove manually either unused or old files. Script didn't do it.
+
+3.To update `eo.version` in `pom.xml` in `objectionary/home`.
+
+4.Finally, all `todo` must be removed manually.
+
+To avoid manual changes we created auto pulling daily run script. It runs once an hour every day to check for new releases of [Objectionary](https://github.com/objectionary/) libraries. 
 If a new release is found, the script creates a new pull request with corresponding changes. This process ensures that our codebase 
 is always up-to-date and optimized.
 
