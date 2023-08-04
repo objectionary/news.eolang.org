@@ -69,6 +69,5 @@ This is how we're about to do it:
 - Prohibit writing objects formed differently into `cage` (done)
 - Prohibit writing objects formed differently into `memory`
 - Prohibit weak atoms typing (`[] > atom /?`)
-- Maybe anything else...
 
 Be in touch and see you soon.
