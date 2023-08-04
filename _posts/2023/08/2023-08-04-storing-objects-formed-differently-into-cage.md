@@ -1,11 +1,11 @@
 ---
 layout: post
-date: 2023-08-03
+date: 2023-08-04
 title: "The CAGE Prohibits Storing Objects Formed Differently"
 author: maxonfjvipon
 ---
 
-In the recently released version [0.30](https://github.com/objectionary/eo/releases/tag/0.30)
+In the recently released version [0.30.0](https://github.com/objectionary/eo/releases/tag/0.30.0)
 we've changed the writing mechanism of `cage` object. Until now, we could store and write to 
 `cage` any object we wanted. But `cage` became smarter and stricter and can store only objects 
 that have the same "form" now.
@@ -60,15 +60,15 @@ seq > @
 ```
 
 You may wonder why we did it.
-Here we talk a bit about our plans for EO.  
+Here it's time to talk a bit about our plans for EO.  
 
-We think that EO can be used as intermediate representation for performing optimizations for many 
+We believe that EO can be used as intermediate representation for performing optimizations for many 
 object-oriented programming languages.
 To achieve that, we have to make EO stronger and stricter.
 This is how we're about to do it:
-- Prohibit writing objects formed differently into `cage`
-- Prohibit writing objects formed differently into `memeory`
+- Prohibit writing objects formed differently into `cage` (done)
+- Prohibit writing objects formed differently into `memory`
 - Prohibit weak atoms typing (`[] > atom /?`)
 - Maybe anything else...
 
-Be in touch and follow the news
+Be in touch and see you soon.
