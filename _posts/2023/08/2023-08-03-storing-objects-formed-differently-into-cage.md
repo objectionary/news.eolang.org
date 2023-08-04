@@ -66,9 +66,9 @@ We think that EO can be used as intermediate representation for performing optim
 object-oriented programming languages.
 To achieve that, we have to make EO stronger and stricter.
 This is how we're about to do it:
-- [x] Prohibit writing objects formed differently into `cage`
-- [ ] Prohibit writing objects formed differently into `memeory`
-- [ ] Prohibit weak atoms typing (`[] > atom /?`)
-- [ ] Maybe anything else...
+- Prohibit writing objects formed differently into `cage`
+- Prohibit writing objects formed differently into `memeory`
+- Prohibit weak atoms typing (`[] > atom /?`)
+- Maybe anything else...
 
 Be in touch and follow the news
