@@ -19,8 +19,8 @@ be reduced to `bytes`, making it unnecessary to single them out.
 Henceforth, there are only two fundamental entities in our language: objects and data, with data 
 being merely a sequence of bytes, nothing more.
 
-Now, let's revisit how we used memory previously. Consider the following code, which illustrates a 
-typical usage of memory:
+Now, let's revisit how we used `memory` previously. Consider the following code, which illustrates a 
+typical usage of `memory`:
 
 ```
 memory 0 > mem
@@ -34,7 +34,7 @@ while. > @
 Here, after storing an `int` in `memory`, it behaves as if it were an `int`, allowing access to all 
 internal objects of the `int`. In this case, `int` acts as data.
 However, from now on, an `int` is just a regular object, and `bytes` is the sole representation of data. 
-`memory adheres to these rules. The following code demonstrates how the behavior of memory has been altered:
+`memory` adheres to these rules. The following code demonstrates how the behavior of `memory` has been altered:
 
 ```
 memory 0 > mem
