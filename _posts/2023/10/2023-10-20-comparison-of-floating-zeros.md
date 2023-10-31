@@ -5,11 +5,12 @@ title: "Comparison of 0.0 and -0.0"
 author: c71n93
 ---
 
-Due to the peculiarities of working with data in EO, an interesting quirk arises when comparing `0.0` and `-0.0`. The 
-fact is that in EO these two values are not equal.
+Due to the peculiarities of working with data in EO, an interesting quirk had been arising when comparing `0.0` and 
+`-0.0.` The fact is that in EO, these two values were not considered equal until we made changes.
 
-This short blog post provides a simplified explanation of number encodings and how the comparison of `0.0` and `-0.0` 
-takes place in EO and other popular programming languages.
+Until recently, the comparison of `0.0` and `-0.0` in EO didn't work like in other languages, but we changed that. This 
+short blog post provides a simplified explanation of number encodings, how such comparison takes place in popular 
+programming languages, and how we changed this comparison in EO to meet the standard.
 
 ### Why do we have two zeros?
 
@@ -23,9 +24,9 @@ for encoding and arithmetic operations. In this standard, numbers have a sign bi
 negative; if it's `0`, the number is positive. As a result, we have two different binary representations of float 
 zero: `0.0` has all zeros in its binary representation, while `-0.0` has all zeros except for the sign bit.
 
-### Comparison of 0.0 and -0.0 in EO
+### Comparison of 0.0 and -0.0 in EO before the changes
 
-Currently, in EO comparison behaves as follows:
+EO comparison used to work as follows:
 
 ```
 0.0.eq -0.0 # FALSE
@@ -35,11 +36,11 @@ Currently, in EO comparison behaves as follows:
 0.0.lte -0.0 # FALSE
 ```
 
-This happens because the `eq` attribute compares data within objects bitwise. In other words, regardless of the data 
-being compared, it is first interpreted as a set of bits and then compared.
+This happened because the `eq` attribute compared data within objects bitwise. In simpler terms, regardless of the data 
+being compared, it was first interpreted as a set of bits and then compared.
 
 Thus, due to the fact that numbers `0.0` and `-0.0`, as previously determined, have different bitwise representations, 
-when compared in EO using `eq`, they turn out to be not equal.
+when compared in EO using `eq`, they turned out to be not equal.
 
 ### Comparison of 0.0 and -0.0 in other languages
 
@@ -54,15 +55,31 @@ example, in Java, C++, JavaScript, and Python, the comparison of these values wo
 0.0 >= -0.0 // true
 ```
 
-So why does this happen if `0.0` and `-0.0` have different bitwise representations? The same IEEE 754 standard states 
-that *"negative zero and positive zero should compare as equal with the usual (numerical) comparison operators"* 
-(referencing the standard in the blog post isn't possible as it's a paid document, but you can find this information 
-[here](https://en.wikipedia.org/wiki/Signed_zero)).
+Why do these languages consider `0.0` and `-0.0` as equal, even though they have different bitwise representations? The 
+same IEEE 754 standard states that *"negative zero and positive zero should compare as equal with the usual (numerical) 
+comparison operators"* (referencing the standard in the blog post isn't possible as it's a paid document, but you can 
+find this information [here](https://en.wikipedia.org/wiki/Signed_zero)).
 
-Hence, comparison operators such as `==` in the languages discussed above should modify their semantics for comparing 
-`float` values to adhere to the standard. This is indeed the case in most languages.
+Thus, this behavior for float numbers is built into most CPUs and works at the assembler level. Comparison operators, 
+such as `==`, in the languages discussed above, correspond to how it is implemented in the hardware. This is indeed the 
+case in most languages.
+
+### Comparison of 0.0 and -0.0 in EO now
+
+In order for the floating-point comparison in EO to comply with the standard, we have changed the behavior of the `eq` 
+attribute for `float`. After these changes the comparison of `0.0` and `-0.0` behaves as follows:
+
+```
+0.0.eq -0.0 # TRUE
+0.0.gt -0.0 # FALSE
+0.0.lt -0.0 # FALSE
+0.0.gte -0.0 # TRUE
+0.0.lte -0.0 # TRUE
+```
+
+Now it works like in all popular programming languages. 
 
 ### Conclusion
 
-- *What strategy will we follow and why?*
-- *Are there any advantages to the EO approach?*
+We changed `eq` attribute of `float` to meet the IEEE 754 standard. Significant reasons are needed to deviate from the 
+standard, so we decided that it would be more correct to do as in other programming languages.
