@@ -5,6 +5,11 @@ title: "We are hiring!"
 author: yegor256
 ---
 
+<span style="color:firebrick;"><strong>ATTENTION!</strong></span>
+We are also hiring interns (BSc and MSc students). 
+Find me in Telegram, we will discuss: 
+[yegor256](https://t.me/yegor256).
+
 We have a few open positions in our team:
 
   * Java developer
