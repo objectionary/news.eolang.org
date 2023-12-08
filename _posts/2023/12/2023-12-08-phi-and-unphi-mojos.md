@@ -11,7 +11,7 @@ to φ-calculus expression and vice versa.
 
 <!--more-->
 
-As you may know, φ-calculus is a formal modal that we are attempting to use as a base for
+As you may know, φ-calculus is a formal model that we are attempting to use as a base for
 object-oriented programming languages, including EO.
 
 From now on, it is possible to convert a program written in EO to a φ-calculus expression. 
