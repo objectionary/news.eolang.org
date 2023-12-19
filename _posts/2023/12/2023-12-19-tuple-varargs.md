@@ -130,7 +130,7 @@ this:
 But there aren't two free attributes in formation of `int.plus`, only one `x`:
 
 ```
-Φ ↦ [org ↦ [eolang ↦ [int ↦ [plus ↦ [x ↦ ∅, ...], ...], ...], ...], ...]
+Φ ↦ ⟦org ↦ ⟦eolang ↦ ⟦int ↦ ⟦plus ↦ ⟦x ↦ ∅, ...⟧, ...⟧, ...⟧, ...⟧, ...⟧
 ```
 
 So as not to complicate things we decided to get rid of varargs in EO at all. And now it's a perfect
