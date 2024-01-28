@@ -48,7 +48,7 @@ You will get this from us:
   * Challenging tasks and details-oriented management
   * An opportunity to become a known open source contributor
   * A limitless career path in a Fortune-100 company
-  * Ability to work remotely from home
+  * <del>Ability to work remotely from home</del>
   * Inclusive discrimination-free workplace
 
 When you decide to apply, be prepared to share this data with us (this is what we pay attention to, in order of importance): years of experience (and company names); education degree (BSc, MSc, PhD, etc.); h-index; books; patents; open source projects; GitHub followers; industry certifications; English level; StackOverflow reputation; blogs and vlogs; non-for-profit activities; public speaking experience; Twitter followers.
