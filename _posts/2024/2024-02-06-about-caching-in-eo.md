@@ -34,7 +34,9 @@ To speed up the assembly of compiled languages, ccache and sccache are used.
 Let's look at the compilation scheme using C++ as an example,
 to imagine the build process in compiled languages:
 
-![Picture 1](/images/ccache.svg)
+<p align="center">
+  <img src="/images/ccache.svg">
+</p>
 
 1) First, preprocessor gets the input files. Input files are code files and header files.
 The preprocessor removes comments from the code and converts the code into in accordance
@@ -81,9 +83,9 @@ which consist of `phases`. `Phases` in turn consist of sets of `goals`.
 
 `Maven` has default `phases` and `goals`  which build any projects:
 
-
-![Picture 2](/images/defaultPhaseMaven.svg)
-
+<p align="center">
+  <img src="/images/defaultPhaseMaven.svg">
+</p>
 
 In `Maven` all phases and goals are executed strictly in order, linearly.
 But in `Maven` there is no build-time caching as such.
@@ -130,7 +132,9 @@ which contains the goals necessary for working with EO code.
 As was written above, the assembly of projects in `Maven` occurs in a certain order of phases.
 In the diagram you can see the main phases and their goals for the EO version of the compiler (specify version):
 
-![Picture 3](/images/EO.svg)
+<p align="center">
+  <img src="/images/EO.svg">
+</p>
 
 In [Picture 3](/images/EO.svg) the goals from the `eo-maven-plugin`
 are highlighted in green.
@@ -140,7 +144,10 @@ But the actual work with EO code takes place in `AssembleMojo`.
 `AssembleMojo` is the goal consisting of other goals that work with the EO file 
 [Picture 4](/images/AssembleMojo.svg).
 
-![Picture 4](/images/AssembleMojo.svg)
+
+<p align="center">
+  <img src="/images/AssembleMojo.svg">
+</p>
 
 Each goal in `AssembleMojo` is a specific compilation step for EO code, and we need to use
 caching at each step to speed up the assembly of the EO program.
