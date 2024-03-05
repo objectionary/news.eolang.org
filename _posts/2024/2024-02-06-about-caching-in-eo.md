@@ -34,7 +34,7 @@ To speed up the assembly of compiled languages, ccache and sccache are used.
 Let's look at the compilation scheme using C++ as an example,
 to imagine the build process in compiled languages:
 
-![Picture 1](/images/ccach.svg)
+![Picture 1](/images/ccache.svg)
 
 1) First, preprocessor gets the input files. Input files are code files and header files.
 The preprocessor removes comments from the code and converts the code into in accordance
@@ -79,7 +79,7 @@ and it also has fixed some bugs (for example, there is a check of header files, 
 maven [LifeCycles Maven](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html),
 which consist of `phases`. `Phases` in turn consist of sets of `goals`.
 
-`Maven` has default `phases` and `goals`  which build any projects.
+`Maven` has default `phases` and `goals`  which build any projects:
 
 
 ![Picture 2](/images/defaultPhaseMaven.svg)
