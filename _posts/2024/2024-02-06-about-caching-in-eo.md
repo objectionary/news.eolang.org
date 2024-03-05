@@ -34,7 +34,7 @@ Let's look at the compilation scheme using C++ as an example,
 to imagine the build process in compiled languages:
 
 
-![Picture 1](/images/ccach.svg)
+![Picture 1](/Users/yanaalekseeva/IdeaProjects/news.eolang.org/images/ccach.svg)
 
 1) First, preprocessor gets the input files. Input files are code files and header files.
 The preprocessor removes comments from the code and converts the code into in accordance
@@ -130,17 +130,17 @@ which contains the goals necessary for working with EO code.
 As was written above, the assembly of projects in `Maven` occurs in a certain order of phases.
 In the diagram you can see the main phases and their goals for the EO version of the compiler (specify version):
 
-![Picture 3](/images/EO.svg)
+![Picture 3](/Users/yanaalekseeva/IdeaProjects/news.eolang.org/images/EO.svg)
 
-In [Picture 3](/images/EO.svg) the goals from the `eo-maven-plugin`
+In [Picture 3](/Users/yanaalekseeva/IdeaProjects/news.eolang.org/images/EO.svg) the goals from the `eo-maven-plugin`
 are highlighted in green.
 
 
 But the actual work with EO code takes place in `AssembleMojo`.
 `AssembleMojo` is the goal consisting of other goals that work with the EO file 
-[Picture 4](/images/AssembleMojo.svg).
+[Picture 4](/Users/yanaalekseeva/IdeaProjects/news.eolang.org/images/AssembleMojo.svg).
 
-![Picture 4](/images/AssembleMojo.svg)
+![Picture 4](/Users/yanaalekseeva/IdeaProjects/news.eolang.org/images/AssembleMojo.svg)
 
 Each goal in `AssembleMojo` is a specific compilation step for EO code, and we need to use
 caching at each step to speed up the assembly of the EO program.
