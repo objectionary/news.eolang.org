@@ -6,21 +6,21 @@ author: Alekseeva Yana
 ---
 
 
-## Introduction
-Wasting a lot of time on building a project is a programming problem. At the moment a programmer starts an
-assembly, he loses focus on a task and spends valuable working time. Different build systems use many tools,
-helping to assemble a project faster, namely caching, task parallelization, distributed building and much more.
-The subject of this article is caching, because completed tasks caching allows not to spend resources again. 
-So in [EO](https://github.com/objectionary/eo) caching is used for speeding up programs work.
-While developing [EO](https://github.com/objectionary/eo) we found caching errors in `eo-maven-plugin`
-for EO version `0.34.0`. The error occurred, because using a file name and comparing equality of
-compilation time and caching time is not the most reliable verification. Unit tests were written showing that 
-cache does not work correctly. Also reading a file was necessary for getting a programme name 
-that slowed down an assembly. 
-That we came to conclusion that we need caching with a reliable verification which does not require reading a file
-from disk. And using cache should save us enough time for building a project.
+## Introduction 
+In [EO](https://github.com/objectionary/eo) a caching is used to speed up program execution.
+While developing [EO](https://github.com/objectionary/eo) we found a caching 
+[error](https://github.com/objectionary/eo/issues/2790) in `eo-maven-plugin`
+for EO version `0.34.0`. The error occurred because the cache was searched for the needed file using 
+a comparison of compilation time and caching time.
+This is not the most reliable verification method,
+because caching time does not have to be equal to compilation time.
+[Unit tests](https://github.com/objectionary/eo/pull/2749) were written to show that the
+cache does not work correctly. Additionally, reading a file was necessary to obtain a program name 
+that slowed down the build process. 
+That we came to the conclusion that we need caching with a reliable verification method
+that does not require reading a file system. Using a cache should save us enough time for building a project.
 
-The goal of this article is to research caching in frequently used build systems (`ccache`, `Maven`, `Gradle`)
+The goal of this blog is to research caching in frequently used build systems (`ccache`, `Maven`, `Gradle`)
 and to create effective caching in [EO](https://github.com/objectionary/eo).
 
 <!--more-->
@@ -29,17 +29,18 @@ and to create effective caching in [EO](https://github.com/objectionary/eo).
 
 ### ccache/sccache
 In compiled programming languages, building a project takes a long time.
-The reason of long compilation is time is spent on preparing, optimizing and checking the code, and so on.
+The reason for the lengthy compilation time is that time is spent on preparing,
+optimizing, checking the code, and so on.
 To speed up the assembly of compiled languages, ccache and sccache are used.
-Let's look at the compilation scheme using C++ as an example,
+Let's look at the compilation scheme using C++ as an example
 to imagine the build process in compiled languages:
 
 <p align="center">
   <img src="/images/ccache.svg">
 </p>
 
-1) First, preprocessor gets the input files. Input files are code files and header files.
-The preprocessor removes comments from the code and converts the code into in accordance
+1) First, preprocessor gets the input files. The input files are code files and header files.
+The preprocessor removes comments from the code and converts the code in accordance
 with macros and executes other directives, starting with the “#” symbol
 (such as #include, #define, various directives like #pragma).
 The result is a single edited file with human-readable code that can be submitted to the compiler.
@@ -54,14 +55,15 @@ that is, we receive several object files at once.
 
 3)  After all received project object files are passed to the linker.
 Linker is a program that combines program components, written in assembly language or a high-level programming language,
-to an executable file or library. The result of the linker is an executable .exe file.
+into an executable file or library. The result of the linker is an executable .exe file.
 
 
-As a result, in compiled languages, multiple files are simultaneously and independently converted into machine code at the compilation stage.
+As a result, in compiled languages, multiple files are simultaneously and independently converted
+into machine code at the compilation stage.
 This machine code is then combined into one executable file.
 
 
-`ccache` has two main caching methods они:
+`ccache` has two main caching methods:
 1) `Direct mode` - hashcode is generated based on the source code.
 2) `Preprocessor mode` - hashcode is generated based on the result of preprocessor.
 
@@ -69,19 +71,19 @@ The hashcode includes information: file contents, directory, compiler informatio
 used by the compiler. A compressed machine code file is placed in the cache using the received key.
 
 `Direct mode` compiles the program faster, since the preprocessor step is skipped. 
-But header files are not checked for changes, so the wrong project may be built.
-`Preprocessor mode` is slower than `direct mode`, but right project is built always.
+BuHowever,the header files are not checked for changes, so the wrong project may be built.
+`Preprocessor mode` is slower than `direct mode`, but the right project is built always.
 
-Sccache, unlike ccache, allows to store the cache not only locally but also in the cloud,
+Sccache, unlike ccache, allows the cache to be stored not only locally but also in the cloud,
 and it also has fixed some bugs (for example, there is a check of header files, which makes direct mode more accurate).
 
 
 ### Maven
-`Maven` automates and manages Java-projects build. Building a project in `Maven` is completed in three
+`Maven` automates and manages Java-project builds. Building a project in `Maven` is completed in three
 maven [LifeCycles Maven](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html),
 which consist of `phases`. `Phases` in turn consist of sets of `goals`.
 
-`Maven` has default `phases` and `goals`  which build any projects:
+`Maven` has default `phases` and `goals`  for building any projects:
 
 <p align="center">
   <img src="/images/defaultPhaseMaven.svg">
@@ -92,15 +94,13 @@ But in `Maven` there is no build-time caching as such.
 `Maven` suggests rebuilding only changed project modules to speed up the build process.
 
 ### Gradle
-`Gradle`, like `Maven`, builds a project in 
-[LifeCycles Gradle](https://docs.gradle.org/current/userguide/build_lifecycle.html), which consists of phases.
 But unlike `Maven`, `Gradle` builds projects using a task graph - 
 [Directed Acyclic Graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph),
 in which some tasks can be executed synchronously.
-To speed up project builds, `Gradle` uses incremental builds
+To speed up project builds, `Gradle` employs incremental builds
 [Incremental build](https://docs.gradle.org/current/userguide/incremental_build.html#sec:how_does_it_work).
-For an incremental build to work, the tasks that are used to build the project must have
-source and output files must be specified.
+For an incremental build to work, the tasks used to build the project must have specified
+source and output files.
 ```
 task myTask {
     inputs.dir 'src/main/java/MyTask.somebody' // Specify the input directory
@@ -112,14 +112,13 @@ task myTask {
     }
 }
 ```
-Every time before executing a task, `Gradle` makes a fingerprint of the path
+Before executing a task, `Gradle` makes a fingerprint of the path
 and contents of the source files and saves it.
-If the task completes successfully, then `Gradle` also makes a fingerprint from the resulting files.
+If the task completes successfully, `Gradle` also makes a fingerprint from the resulting files.
 To avoid re-fingerprinting the original files, `Gradle` checks the last modification time and the size of the original
-files before reassembling. Thus, when the project is rebuilt, some or all of the tasks may be
-not completed, but to use the results already obtained.
-`Gradle` also stores fingerprints of previous builds so that projects can be built quickly, for example when switching
-from one branch to another - `Build Cache`.
+files before reassembling. This allows `Gradle` to use the results already obtained when the project is rebuilt.
+Additionally, `Gradle` stores fingerprints of previous builds enabling quick project builds,
+for example when switching from one branch to another - known as the - `Build Cache`.
 
 
 
@@ -127,10 +126,10 @@ from one branch to another - `Build Cache`.
 ### EO build cache
 
 EO code is compiled using the `Maven` build system.
-For this purpose, the `eo-maven-plugin` plugin was written,
-which contains the goals necessary for working with EO code.
-As was written above, the assembly of projects in `Maven` occurs in a certain order of phases.
-In the diagram you can see the main phases and their goals for the EO version of the compiler (specify version):
+For this purpose, the `eo-maven-plugin` plugin was created,
+which contains the necessary goals for working with EO code.
+As mentioned earlier, the assembly of projects in `Maven` occurs in a specific order of phases.
+In the diagram you can observe the main phases and their goals for the EO last version of the compiler:
 
 <p align="center">
   <img src="/images/EO.svg">
@@ -140,8 +139,8 @@ In [Picture 3](/images/EO.svg) the goals from the `eo-maven-plugin`
 are highlighted in green.
 
 
-But the actual work with EO code takes place in `AssembleMojo`.
-`AssembleMojo` is the goal consisting of other goals that work with the EO file 
+However, the actual work with EO code takes place in `AssembleMojo`.
+`AssembleMojo` is the goal consisting of other goals that work with the EO file, as shown in
 [Picture 4](/images/AssembleMojo.svg).
 
 
@@ -153,30 +152,27 @@ Each goal in `AssembleMojo` is a specific compilation step for EO code, and we n
 caching at each step to speed up the assembly of the EO program.
 
 In EO version `0.34.0`, 
-caching for different `Mojo` was done using unrelated different `Footprint` and `Optimization` interfaces,
+caching for different `Mojo` was done using unrelated `Footprint` and `Optimization` interfaces,
 within which mostly the same methods were used.
 The difference between interfaces is that in `Footprint` the EO version of the compiler is checked,
 while the rest of the checks are exactly the same.
 
 
-Now goals are `ParseMojo`, `OptimazeMojo` и `ShakeMojo` , in which caching can be applied,
+Now, goals are `ParseMojo`, `OptimazeMojo` и `ShakeMojo` , in which caching can be applied,
 have directory of results and directory of cache.
 
 
-The disadvantages of initial caching in EO:
-* the compilation time and the time of saving to the cache must be equal. 
-The problem with this verification is that the moment of compilation and the moment of saving to the cache must coincide.
-* verification data is read from a file on disk. This is a long and expensive operation.
-* each purpose uses its own classes and interfaces for data caching. 
-This makes the code difficult to extensibility and readability.
+The disadvantages of initial caching in EO include:
+* The compilation time and the time of saving to the cache must be equal, which can be challenging to verify.
+* Verification data is read from a file on disk, which is a long and expensive operation.
+* Each purpose uses its own classes and interfaces for data caching, making the code difficult to extend and read.
 
 
-Therefore, our target is to create a single class responsible for caching data
-and loading the necessary data from the cache, which can be used for any `Mojo` from the `eo-maven-plugin`.
+
+To address these disadvantages, the following solutions are proposed:
 
 
-How do we want to fix this disadvantages:
-1) Create a new class `Cache` that will be responsible for data verification, saving to cache and loading from cache.
+1) Create a new class `Cache` responsible for data verification, saving to cache and loading from cache.
 
 ```
 public class Cache {
