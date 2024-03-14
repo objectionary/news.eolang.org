@@ -7,18 +7,15 @@ author: Alekseeva Yana
 
 
 ## Introduction 
-In [EO](https://github.com/objectionary/eo) a caching is used to speed up program execution.
-While developing [EO](https://github.com/objectionary/eo) we found a caching 
-[error](https://github.com/objectionary/eo/issues/2790) in `eo-maven-plugin`
-for EO version `0.34.0`. The error occurred because the cache was searched for the needed file using 
-a comparison of compilation time and caching time.
+In [EO](https://github.com/objectionary/eo), caching is used to speed up program compilation.
+Recently we found a caching 
+[bug](https://github.com/objectionary/eo/issues/2790) in `eo-maven-plugin`
+for EO version `0.34.0`. The error occurred because the algorithm compared
+the compilation time and caching time to search for the needed file.
 This is not the most reliable verification method,
 because caching time does not have to be equal to compilation time.
-[Unit tests](https://github.com/objectionary/eo/pull/2749) were written to show that the
-cache does not work correctly. Additionally, reading a file was necessary to obtain a program name 
-that slowed down the build process. 
 That we came to the conclusion that we need caching with a reliable verification method
-that does not require reading a file system. Using a cache should save us enough time for building a project.
+that does not require reading a file system.
 
 The goal of this blog is to research caching in frequently used build systems (`ccache`, `Maven`, `Gradle`)
 and to create effective caching in [EO](https://github.com/objectionary/eo).
@@ -32,7 +29,7 @@ In compiled programming languages, building a project takes a long time.
 The reason for the lengthy compilation time is that time is spent on preparing,
 optimizing, checking the code, and so on.
 To speed up the assembly of compiled languages, ccache and sccache are used.
-Let's look at the compilation scheme using C++ as an example
+Let's look at the assembly scheme using C++ as an example
 to imagine the build process in compiled languages:
 
 <p align="center">
@@ -43,12 +40,13 @@ to imagine the build process in compiled languages:
 The preprocessor removes comments from the code and converts the code in accordance
 with macros and executes other directives, starting with the “#” symbol
 (such as #include, #define, various directives like #pragma).
-The result is a single edited file with human-readable code that can be submitted to the compiler.
+The result is a single edited file with human-readable code that the compiler will get.
 
 
 2) The compiler receives the finished code file and converts it into machine code, presented in an object file.
 At the compilation stage, parsing occurs, which checks whether the code matches
-rules of a specific programming language. Next, the code is parsed into machine code according to the rules.
+rules of a specific programming language. Next, the parsing occurs preprocessor code into machine code
+according to the rules.
 At the end of its work, the compiler optimizes the resulting machine code and produces an object file. 
 To speed up compilation, different files of the same project are compiled in parallel,
 that is, we receive several object files at once.
@@ -125,7 +123,7 @@ for example when switching from one branch to another - known as the - `Build Ca
 
 ### EO build cache
 
-EO code is compiled using the `Maven` build system.
+EO code uses the `Maven` build system to assembly.
 For this purpose, the `eo-maven-plugin` plugin was created,
 which contains the necessary goals for working with EO code.
 As mentioned earlier, the assembly of projects in `Maven` occurs in a specific order of phases.
@@ -152,9 +150,9 @@ Each goal in `AssembleMojo` is a specific compilation step for EO code, and we n
 caching at each step to speed up the assembly of the EO program.
 
 In EO version `0.34.0`, 
-caching for different `Mojo` was done using unrelated `Footprint` and `Optimization` interfaces,
+caching used unrelated `Footprint` and `Optimization` interfaces for different `Mojo`,
 within which mostly the same methods were used.
-The difference between interfaces is that in `Footprint` the EO version of the compiler is checked,
+The difference between interfaces is that `Footprint` checks the EO version of the compiler,
 while the rest of the checks are exactly the same.
 
 
@@ -190,8 +188,8 @@ public class Cache {
 ```
 
 
-`List<CacheValidation>` is a list of validations that are implemented from the `CacheValidation` interface.
-Different validations can be applied for different `Mojo`.
+`List<CacheValidation>` is a list of validations. Validations implemented from the `CacheValidation` interface.
+Different `Mojo` can use different validations.
 
 
 ```
