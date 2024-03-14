@@ -10,6 +10,14 @@ Here is a full list of papers about 𝜑-calculus,
 [Polystat](https://www.polystat.org),
 and other related projects (in reverse chronological order):
 
+* Yegor Bugayenko and Mikhail Lipanin (2023),
+[An Algorithm for Partial Elimination of Jumps in an Object-Oriented Dataflow Language](https://dl.acm.org/doi/10.1145/3638584.3638679),
+Proceedings of the 7th International Conference on Computer Science and Artificial Intelligence (CSAI).
+
+* Alena Vasileva and Yegor Bugayenko (2023),
+[Object Specialization to Partially Reduce Polymorphism of Attributes](https://dl.acm.org/doi/10.1145/3638584.3638674),
+Proceedings of the 7th International Conference on Computer Science and Artificial Intelligence (CSAI).
+
 * Vadim Piven and Sergey Zykov (2022),
 [Assessment of static type checking compliance of EOLANG](https://www.sciencedirect.com/science/article/pii/S1877050922013795),
 Proceedings of the 26th International Conference on Knowledge-Based and Intelligent Information & Engineering Systems (KES).
