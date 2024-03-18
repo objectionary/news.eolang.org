@@ -29,33 +29,24 @@ In compiled programming languages, building a project containing many source cod
 This time is spent on loading of libraries, preparing, optimizing, checking the code, and so on.
 To speed up the assembly of compiled languages, [ccache](https://ccache.dev) 
 and [sccache](https://github.com/mozilla/sccache) are used.
-Let's look at the assembly scheme using C++ as an example
-to imagine the build process in compiled languages:
+Let's look at the assembly scheme using C++ as an example:
 
 <p align="center">
   <img src="/images/defaultCPhase.svg">
 </p>
 
-1) First, preprocessor gets the input files. The input files are source files `.cpp` and header files `.h`.
-The result is a single edited file `.cpp` with human-readable code that the compiler will get.
-
-
-2) The compiler receives the edited code file `.cpp` and converts it into machine code, presented in an object file.
-At the compilation stage, parsing occurs, which checks whether the code matches
-rules of a specific programming language.
+1) First, preprocessor retrieves the source code files,
+which consist of both source files `.cpp` and header files `.h`.
+The result is a single file `.cpp` with human-readable code that the compiler will get.
+2) The compiler receives the edited code file `.cpp` and converts it into object file - `.obj`.
+At the compilation stage, parsing checks whether the code matches rules of a specific programming language.
 At the end, the compiler optimizes the resulting machine code and produces an object file. 
-To speed up compilation, different files of the same project are compiled in parallel.
-
+To speed up compilation, different files of the same project might be compiled in parallel.
 3)  Then, the [Linker](https://en.wikipedia.org/wiki/Linker_(computing)) gets object files.
 The result of the linker is an executable `.exe` file.
 
-
-As a result, in compiled languages, multiple files are simultaneously and independently converted
-into machine code at the compilation stage.
-This machine code is then combined into one executable file.
-
-
-`ccache` hash algorithm, for the hashing of information to find cached files fast. 
+    
+`ccache` has hash algorithm, for the hashing of information to find cached files fast. 
 The [`ccache` hash](https://ccache.dev/manual/4.8.2.html#_common_hashed_information)
 includes information:
 * the file contents
@@ -70,16 +61,13 @@ A compressed machine code file is placed in the cache using the received key.
 
 `ccache` has two main caching methods:
 1) `Direct mode` - hash is generated based on the source code. 
-`Direct mode` compiles the program faster, since the preprocessor step is skipped.
-However,the header files are not checked for changes, so the project may be built with not verified header files.
-2) `Preprocessor mode` - hash is generated based on the result of preprocessor.
+`Direct mode` allows to build the program faster, since the preprocessor step is skipped.
+However, header files are not checked for changes, so the project may be built with not verified header files.
+2) `Preprocessor mode` - hash is generated based on the `.cpp` file received after the preprocessor step.
 `Preprocessor mode` is slower than `direct mode`, but the project is built with verified header files.
 
 `Sccache`, unlike `ccache`, allows you to store cached files not only locally, but also in a cloud data storage.
-And `sccache` includes support for caching the compilation of C/C++ code, 
-[Rust](https://github.com/mozilla/sccache/blob/main/docs/Rust.md), as well as NVIDIA's CUDA using 
-[nvcc](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html),
-and [clang](https://llvm.org/docs/CompileCudaWithLLVM.html), while `ccache` works with C and C++ code.
+And `sccache` supports a wider range of languages, while ccache focuses on caching C and C++ compiler.
 
 
 ### Maven
@@ -95,14 +83,14 @@ which consist of `phases`. `Phases` consist of sets of `goals`.
 </p>
 
 In `Maven` all phases and goals are executed strictly in order, linearly.
-But in `Maven` there is no build-time caching as such.
+`Maven` uses added extensions from Gradle for caching.
 `Maven` suggests rebuilding only changed project modules to speed up the build process.
 
 ### Gradle
 But unlike `Maven`, [Gradle](https://gradle.org) builds projects using a task graph - 
 [Directed Acyclic Graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph),
 in which some tasks can be executed synchronously.
-To speed up project builds, `Gradle` employs incremental builds
+To speed up project builds, `Gradle` employs
 [Incremental build](https://docs.gradle.org/current/userguide/incremental_build.html#sec:how_does_it_work).
 For an incremental build to work, the tasks used to build the project must have specified
 source and output files.
@@ -120,13 +108,13 @@ task myTask {
 `Gradle` uses this information to determine if a task is up-to-date and needs to perform any work.
 
 How work `Incremental build`:
-1) Before executing a task, `Gradle` makes a [fingerprint](https://en.wikipedia.org/wiki/Fingerprint_(computing))
+1) Before executing a task, `Gradle` creates a [fingerprint](https://en.wikipedia.org/wiki/Fingerprint_(computing))
    of the path and contents of the source files and saves it.
-2) `Gradle` executes a task and saves a fingerprint of the path
-   and contents of the output files.
-3) Before each rebuilding of task, `Gradle` makes a fingerprint of the source files
-   and compares with a current fingerprint. A fingerprint is a current fingerprint,
-   if the last modification time and the size of the source files was not changed.
+2) Then `Gradle` executes the task and saves a fingerprint of the path and contents of the output files.
+3) Before each rebuilding of the task, `Gradle` generates a fingerprint of the source files
+   and compares it with the current fingerprint. 
+   The fingerprint is considered current if the last modification time 
+   and the size of the source files have not changed. 
    If none of the inputs or outputs have changed, Gradle can skip that task.
 
 
