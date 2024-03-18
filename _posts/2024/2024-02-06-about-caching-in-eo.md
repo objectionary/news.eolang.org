@@ -36,19 +36,18 @@ to imagine the build process in compiled languages:
   <img src="/images/defaultCPhase.svg">
 </p>
 
-1) First, preprocessor gets the input files. The input files are source files (.cpp) and header files (.h).
-The result is a single edited file with human-readable code that the compiler will get.
+1) First, preprocessor gets the input files. The input files are source files `.cpp` and header files `.h`.
+The result is a single edited file `.cpp` with human-readable code that the compiler will get.
 
 
-2) The compiler receives the finished code file and converts it into machine code, presented in an object file.
+2) The compiler receives the edited code file `.cpp` and converts it into machine code, presented in an object file.
 At the compilation stage, parsing occurs, which checks whether the code matches
 rules of a specific programming language.
 At the end, the compiler optimizes the resulting machine code and produces an object file. 
 To speed up compilation, different files of the same project are compiled in parallel.
 
-3)  Then, the linker gets object files.
-Linker is a program that combines object files into an executable file or library.
-The result of the linker is an executable .exe file.
+3)  Then, the [Linker](https://en.wikipedia.org/wiki/Linker_(computing)) gets object files.
+The result of the linker is an executable `.exe` file.
 
 
 As a result, in compiled languages, multiple files are simultaneously and independently converted
@@ -56,26 +55,37 @@ into machine code at the compilation stage.
 This machine code is then combined into one executable file.
 
 
-`ccache` uses hashcode to find cached files. The hashcode includes information:
-file contents, directory, compiler information, compilation time, extensions
-used by the compiler. A compressed machine code file is placed in the cache using the received key.
+`ccache` hash algorithm, for the hashing of information to find cached files fast. 
+The [`ccache` hash](https://ccache.dev/manual/4.8.2.html#_common_hashed_information)
+includes information:
+* the file contents
+* the current directory of the file
+* the name of the compiler
+* the compiler’s size and modification time
+* extensions used by the compiler. 
+
+
+A compressed machine code file is placed in the cache using the received key.
 
 
 `ccache` has two main caching methods:
-1) `Direct mode` - hashcode is generated based on the source code. 
+1) `Direct mode` - hash is generated based on the source code. 
 `Direct mode` compiles the program faster, since the preprocessor step is skipped.
-However,the header files are not checked for changes, so the wrong project may be built.
-2) `Preprocessor mode` - hashcode is generated based on the result of preprocessor.
-`Preprocessor mode` is slower than `direct mode`, but the right project is built always.
+However,the header files are not checked for changes, so the project may be built with not verified header files.
+2) `Preprocessor mode` - hash is generated based on the result of preprocessor.
+`Preprocessor mode` is slower than `direct mode`, but the project is built with verified header files.
 
-`Sccache`, unlike `ccache`, allows you to store cached files not only locally, but also in the cloud.
-And it also has fixed some bugs (for example, there is a check of header files, which makes direct mode more accurate).
+`Sccache`, unlike `ccache`, allows you to store cached files not only locally, but also in a cloud data storage.
+And `sccache` includes support for caching the compilation of C/C++ code, 
+[Rust](https://github.com/mozilla/sccache/blob/main/docs/Rust.md), as well as NVIDIA's CUDA using 
+[nvcc](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html),
+and [clang](https://llvm.org/docs/CompileCudaWithLLVM.html), while `ccache` works with C and C++ code.
 
 
 ### Maven
 [Maven](https://maven.apache.org) automates and manages Java-project builds. 
 Building a project in `Maven` is completed in three
-maven [LifeCycles Maven](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html),
+[Maven LifeCycles](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html),
 which consist of `phases`. `Phases` consist of sets of `goals`.
 
 `Maven` has default `phases` and `goals`  for building any projects:
@@ -107,15 +117,23 @@ task myTask {
     }
 }
 ```
-Before executing a task, `Gradle` makes a fingerprint of the path
-and contents of the source files and saves it.
-If the task completes successfully, `Gradle` also makes a fingerprint from the resulting files.
-To avoid re-fingerprinting the original files, `Gradle` checks the last modification time and the size of the original
-files before reassembling. This allows `Gradle` to use the results already obtained when the project is rebuilt.
+`Gradle` uses this information to determine if a task is up-to-date and needs to perform any work.
+
+How work `Incremental build`:
+1) Before executing a task, `Gradle` makes a [fingerprint](https://en.wikipedia.org/wiki/Fingerprint_(computing))
+   of the path and contents of the source files and saves it.
+2) `Gradle` executes a task and saves a fingerprint of the path
+   and contents of the output files.
+3) Before each rebuilding of task, `Gradle` makes a fingerprint of the source files
+   and compares with a current fingerprint. A fingerprint is a current fingerprint,
+   if the last modification time and the size of the source files was not changed.
+   If none of the inputs or outputs have changed, Gradle can skip that task.
+
+
+
 Additionally, `Gradle` stores fingerprints of previous builds enabling quick project builds,
 for example when switching from one branch to another - known as the -
 [Build Cache](https://docs.gradle.org/current/userguide/build_cache.html).
-
 
 
 
@@ -125,7 +143,7 @@ EO code uses the `Maven` build system to build.
 For this purpose, the `eo-maven-plugin` plugin was created,
 which contains the necessary goals for working with EO code.
 As mentioned earlier, the build of projects in `Maven` occurs in a specific order of phases.
-In the diagram you can observe the main phases and their goals for the EO last version of the compiler:
+In the diagram you can observe the main phases and their goals for the EO:
 
 <p align="center">
   <img src="/images/EO.svg">
@@ -154,6 +172,10 @@ which used the same methods.
 The difference between interfaces is that `Footprint` checks the EO version of the compiler,
 while the rest of the checks are exactly the same.
 
+In this chapter ` the source file` - is a file, which `Mojo` receives, 
+`the cached file` - is a file with the result of executing `Mojo`,
+`the program file` - is initial EO program file (`program.eo`).
+
 
 The disadvantages of initial caching in EO include:
 * The cached file is actual if the compilation time and the time of saving to the cache are equal.
@@ -161,11 +183,12 @@ The disadvantages of initial caching in EO include:
 * Each goal uses own classes and interfaces for data caching, making the code difficult to extend and read.
 
 
-
 To address these disadvantages, the following solutions are proposed:
-
-
 1) Create a new class `Cache` responsible for data verification, saving to cache and loading from cache.
+Since each `Mojo` that involves caching has directories for saving and caching results, 
+we just need to create a class responsible for saving and loading their cache data.
+Each `Mojo` will have the own class `Cache` with own a list of validations.
+If all `Mojos` have the same validations, then one `Cache` is enough.
 
 ```
 public class Cache {
@@ -182,11 +205,8 @@ public class Cache {
 }
 ```
 
-
 `List<CacheValidation>` is a list of validations. Validations are implemented from the `CacheValidation` interface.
-Different `Mojo` can use different validations.
-
-
+The `CacheValidation` interface has the only method, that must contain one test condition.
 ```
 public interface CacheValidation {
     boolean validate(final Path source, final Path cache) throws IOException;
@@ -194,22 +214,26 @@ public interface CacheValidation {
 ```
 
 2) To avoid reading from disk, we will use file paths `Path`.
-The classes `Path` and `Files` have methods to obtain the necessary information.
+The classes `Path` and `Files` have methods to obtain the necessary information - the file name
+and the time of the last modification. The file name is necessary to find the cached file in the directory.
+The time of the last modification is necessary to check the source file is older(or equal) than the cached file.
+These conditions should be enough for us, since the build of projects in Maven is linear.
 
 
 3) Searching for a cached data will use the following conditions:
   * The source file and cached file should have same file name;
-  * Each saving cached file `Mojo` should have a cache directory and a result directory.
+  * Each `Mojo`, involved caching, should have a cache directory and a directory of result files. 
+    The directory of result files is directory of source files for next `Mojo`.
   * The time of the last modification of the source file should be earlier or equal than cached file.
 
 
-There is an EO program `program.eo`, which is launched for the first time.
-The cache of each `Mojo` will save the execution results.
-If this program is run again, these `Mojo` will receive data from the cache,
-without wasting time and computer resources on recompilation.
-If we change something in the `program.eo` file, the program will have to be recompiled,
-since the last modification time the source file will be later than the cached file.
-As a result of `Mojo` work, the cache was overwritten.
+Example: there is an EO program `program.eo`, which is launched for the first time;
+the cache of each `Mojo` will save the execution results in cache directory and result directory;
+when this program is run again, these `Mojo` will receive data from the cache,
+without executing of task and rewriting of result.
+If we change something in the `program.eo` file or the source files,
+the program or will have to be executed again or the execution result of `Mojo` was overwritten.
+This way the program will be protected from artificial changes during the build process.
 
 
 ### Conclusion
