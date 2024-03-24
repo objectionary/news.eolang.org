@@ -16,7 +16,7 @@ In this post we will tell you how we solved this problem.
 
 # A little about cage
 
-In [this](../../2023/08/2023-08-05-storing-objects-formed-differently-into-cage.md) post we 
+In [this](https://news.eolang.org/2023-08-04-storing-objects-formed-differently-into-cage.html) post we 
 raised the topic of cage. There we told how to write into cage, and what limitations there are -
 objects of the same `forma` can be written into one cage.
 Here is a simple example of using a cage:
