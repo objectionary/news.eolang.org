@@ -14,12 +14,12 @@ In this post we will tell you how we solved this problem.
 
 <!--more-->
 
-# A little about cage
+# A little about `cage`
 
 In [this](https://news.eolang.org/2023-08-04-storing-objects-formed-differently-into-cage.html) post we 
-raised the topic of cage. There we told how to write into cage, and what limitations there are -
+raised the topic of `cage`. There we told how to write into `cage`, and what limitations there are -
 objects of the same `forma` can be written into one cage.
-Here is a simple example of using a cage:
+Here is a simple example of using a `cage`:
 
 ```eo
 # Cage conatains int.
@@ -33,7 +33,7 @@ Here is a simple example of using a cage:
     42
 ```
 
-But you might also accidentally write cage inside cage, leading to infinite recursion.
+But you might also accidentally write `cage` inside `cage`, leading to infinite recursion.
 ```eo
 [] > catches-stack-overflow
   cage > cge
@@ -49,8 +49,8 @@ When `cge` is dataizing it dataizes `0.plus cge`. It takes attribute `plus` from
 tries to dataize its argument `cge` inside. We have achieved our goal: infinite recursion is obtained.
 The first attempt is to detect such cases even in compilation. But generally speaking, the presence 
 of `case` inside `case` is not a mistake, because such a program may well be correct.
-Dataization of cage can several times pas through the `cage` and only then return some value.
-This eo illustrates such scenario (it does not work with latest version but idea of deep cage is clear):
+Dataization of `cage` can several times pas through the `cage` and only then return some value.
+This eo illustrates such scenario (it does not work with latest version but idea of deep `cage` is clear):
 ```eo
 # correct-cage-recursion.
 [] > correct-cage-recursion
