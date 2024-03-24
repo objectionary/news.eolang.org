@@ -48,7 +48,7 @@ In order to provide everywhere the same `forma` we use `0.plus`.
 When `cge` is dataizing it dataizes `0.plus cge`. It takes attribute `plus` from object `0`. `int.plus`
 tries to dataize its argument `cge` inside. We have achieved our goal: infinite recursion is obtained.
 The first attempt is to detect such cases even in compilation. But generally speaking, the presence 
-of `case` inside `case` is not a mistake, because such a program may well be correct.
+of `cage` inside `cage` is not a mistake, because such a program may well be correct.
 Dataization of `cage` can several times pas through the `cage` and only then return some value.
 This eo illustrates such scenario (it does not work with latest version but idea of deep `cage` is clear):
 ```eo
