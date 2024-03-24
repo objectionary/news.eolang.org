@@ -76,7 +76,8 @@ public Phi lambda() {
     return this.attr("enclosure").get();
 }
 ```
-That is, when dataizing, `cage` simply returned its `enclosure`. In order to trace how many times 
+Don't worry about this piece of code from our source, it's easy to understand: During `cage` dataization,
+it returns a reference to the object stored in it- `enclosure`. In order to trace how many times 
 `cage` dataization uses itself we wrap `enclosure` in the `PhTracedEnclosure`:
 ```java
 @Override
@@ -85,10 +86,9 @@ public Phi lambda() {
 }
 ```
 `PhTracedEnclosure` keeps `enclosure` and `cage` that it traces. It also has something like **static** 
-`Map<Phi, Integer>`, where it counts how many times `enclosure` was used: It increments `cage`'s 
-counter before calling `enclosure::attr` method and decrement after. Thus, in the case of recursion, 
-the counter does not decrease, but only increases. When the counter reaches a certain threshold, an
-exception `ExFailure` is thrown. 
+`Map<Phi, Integer>`, where it counts how many times `enclosure` was used: It increments the counter of `cage`
+before retrieving its attributes and decrements it after successful retrieval. Therefore, in the case of recursion, 
+the counter doesn't decrease, but only increases. When the counter reaches a certain threshold, an exception is thrown.
 
 The value of such a threshold is called `"EO_MAX_CAGE_RECURSION_DEPTH"`, and it is a java property 
 which you can set by yourself. We chose `100` to be default value. Then `cage` can be
