@@ -6,8 +6,8 @@ author: levBagryansky
 ---
 
 The main difference between `cage` and `memory` is how the object is written.
-When dataizing, `memory.write` executes its argument as well. Whereas 
-`cage.write` just saves a reference to this object. As a result, the execution
+When dataizing, `memory.write` datazies its argument as well. Whereas 
+`cage.write` just saves a reference to this object. As a result, the dataization
 of the `cage` may turn out to be recursive. Unfortunately, this error is often not obvious.
 
 In this post we will tell you how we solved this problem.
@@ -30,7 +30,6 @@ Here is a simple example of using a cage:
       *
         my-int.write 42
         my-int
-        sum
     42
 ```
 
