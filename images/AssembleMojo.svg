@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="500">
+    <text x="100" y="30" font-size="17" font-weight="bold" text-anchor="middle">Assemble goal</text>
+
+    <defs>
+        <marker id="arrowhead" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10" fill="black" />
+        </marker>
+    </defs>
+
+    <rect x="50" y="50" width="110" height="30" fill="lightgreen" stroke="black" />
+    <text x="105" y="70" fill="#000000" font-size="16" text-anchor="middle">ParseMojo</text>
+    <line x1="100" y1="80" x2="100" y2="100" stroke="black" marker-end="url(#arrowhead)" stroke-width="2" />
+
+    <rect x="50" y="100" width="110" height="30" fill="lightgreen" stroke="black" />
+    <text x="105" y="120" fill="#000000" font-size="16" text-anchor="middle">OptimizeMojo</text>
+    <line x1="100" y1="130" x2="100" y2="150" stroke="black" marker-end="url(#arrowhead)" stroke-width="2" />
+
+    <rect x="50" y="150" width="110" height="30" fill="lightgreen" stroke="black" />
+    <text x="105" y="170" fill="#000000" font-size="16" text-anchor="middle">ShakeMojo</text>
+    <line x1="100" y1="180" x2="100" y2="200" stroke="black" marker-end="url(#arrowhead)" stroke-width="2" />
+
+    <rect x="50" y="200" width="110" height="30" fill="lightgreen" stroke="black" />
+    <text x="105" y="220" fill="#000000" font-size="16" text-anchor="middle">DiscoverMojo</text>
+    <line x1="100" y1="230" x2="100" y2="250" stroke="black" marker-end="url(#arrowhead)" stroke-width="2" />
+
+    <rect x="50" y="250" width="110" height="30" fill="lightgreen" stroke="black" />
+    <text x="105" y="270" fill="#000000" font-size="16" text-anchor="middle">ProbeMojo</text>
+    <line x1="100" y1="280" x2="100" y2="300" stroke="black" marker-end="url(#arrowhead)" stroke-width="2" />
+
+    <rect x="50" y="300" width="110" height="30" fill="lightgreen" stroke="black" />
+    <text x="105" y="320" fill="#000000" font-size="16" text-anchor="middle">PullMojo</text>
+    <line x1="100" y1="330" x2="100" y2="350" stroke="black" marker-end="url(#arrowhead)" stroke-width="2" />
+
+    <rect x="50" y="350" width="110" height="30" fill="lightgreen" stroke="black" />
+    <text x="105" y="370" fill="#000000" font-size="16" text-anchor="middle">ResolveMojo</text>
+    <line x1="100" y1="380" x2="100" y2="400" stroke="black" marker-end="url(#arrowhead)" stroke-width="2" />
+
+    <rect x="50" y="400" width="110" height="30" fill="lightgreen" stroke="black" />
+    <text x="105" y="420" fill="#000000" font-size="16" text-anchor="middle">MarkMojo</text>
+    <line x1="100" y1="430" x2="100" y2="450" stroke="black" marker-end="url(#arrowhead)" stroke-width="2" />
+
+    <rect x="50" y="450" width="110" height="30" fill="lightgreen" stroke="black" />
+    <text x="105" y="470" fill="#000000" font-size="16" text-anchor="middle">PlaceMojo</text>
+
+
+</svg>
