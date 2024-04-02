@@ -9,7 +9,7 @@ author: Alekseeva Yana
 ## Introduction 
 In [EO](https://github.com/objectionary/eo), caching is used to speed up program compilation.
 Recently we found a caching 
-[bug](https://github.com/objectionary/eo/issues/2790) in `eo-maven-plugin`
+[bug](https://github.com/objectionary/eo/issues/2790) between goals in `eo-maven-plugin`
 for EO version `0.34.0`. The bug occurred because the old verification method
 used compilation time and caching time to search for a cached file.
 This is not the most reliable verification method,
@@ -23,7 +23,7 @@ in order to gain a deeper understanding of the caching concepts employed within 
 
 <!--more-->
 
-## Build caching of existing build systems
+## Caching in Other Build Systems
 
 ### ccache/sccache
 In compiled programming languages, building a project with many source code files takes a long time.
@@ -41,14 +41,13 @@ The result is a single file `.cpp` with human-readable code that the compiler wi
 At the compilation stage, parsing checks whether the code matches rules of a specific programming language.
 At the end, the compiler optimizes the resulting machine code and produces an object file. 
 To speed up compilation, different files of the same project might be compiled in parallel.
-3)  Then, the [Linker](https://en.wikipedia.org/wiki/Linker_(computing)) gets object files.
-The result of the linker is an executable `.exe` file.
+3)  Then, the [Linker](https://en.wikipedia.org/wiki/Linker_(computing)) combines object files
+into an executable `.exe` file.
 
 
 To speed up the build of compiled languages, [ccache](https://ccache.dev)
 and [sccache](https://github.com/mozilla/sccache) are used.    
 `ccache` uses the hash algorithm for the hashing of code at certain stages of the build.
-`ccache` uses the hash to save a code in the cache.
 When compiling a file, its hash is calculated. 
 If the file is already present in the registry of compiled files, the file will not be compiled again.
 Instead, the previously compiled binary file will be utilized.
@@ -64,13 +63,18 @@ based on:
 Moreover, `ccache` has two types of the hashing:
 1) `Direct mode` - the hash is generated based on the source code only.
 When using this mode, the user must ensure that the external libraries used in a project have not changed.
-Otherwise, the project will fail to build, resulting in errors.
+Otherwise, the project might fail to build, resulting in errors.
 2) `Preprocessor mode` - hash is generated based on the `.cpp` file received after the preprocessor step.
 
 
 `Sccache` is similar in purpose to `ccache` but provides more functionality.
 `Sccache` allows to store cached files not only locally, but also in a cloud data storage.
 And `sccache` supports a wider range of languages, while `ccache` focuses on caching C and C++ compiler.
+
+
+`ccache` is a high-level tool and cannot work with individual compilation tasks,
+therefore `ccache` is not suitable for solving our problems.
+However, the concept of non-local data storage could potentially be incorporated during the development of the EO.
 
 
 ### Gradle
@@ -98,20 +102,25 @@ task myTask {
 
 
 To understand how `Incremental build` works, consider the following steps:
-1) Before executing a task, `Gradle` takes a 
-   [fingerprint](https://en.wikipedia.org/wiki/Fingerprint_(computing))
-   of the path and contents of the inputs files and saves it.
-2) Then `Gradle` executes the task and saves a fingerprint of the path and contents of the output files.
-3) Then, when Gradle starts a project build again, it generates a new fingerprint for the same files.
-   If the new fingerprint has not changed, Gradle can safely skip this task. 
-   In the opposite case, the task needs to perform an action and to rewrite outputs.
-   The fingerprint is considered current if the last modification time 
+1) Before executing a task, `Gradle` takes a hash of the path and contents of the inputs files and saves it.
+   The hash is considered current if the last modification time
    and the size of the source files have not changed.
+2) Then `Gradle` executes the task and saves a hash of the path and contents of the output files.
+3) Then, when Gradle starts a project build again, it generates a new hash for the same files.
+   If the new hash is current, Gradle can safely skip this task. 
+   In the opposite case, the task performs an action again and rewrites outputs.
 
 
-In addition to `Incremental build`, `Gradle` also stores fingerprints of previous builds, enabling quick project builds,
-for example when switching from one branch to another. This feature is known as 
+In addition to `Incremental build`, `Gradle` also stores hashes of previous builds, enabling quick project builds,
+for example when switching from one git branch to another. This feature is known as 
 the [Build Cache](https://docs.gradle.org/current/userguide/build_cache.html).
+
+
+The concept of `Gradle Incremental build` bears resemblance to a tool that is essential for our purposes.
+It has the capability to manage separate compilation tasks based on inputs and outputs.
+However, an incremental build in Gradle may be redundant for the EO.
+In contrast to other programming languages, EO currently lacks pre-existing libraries that can be integrated
+into the project. Consequently, there is no need to generate a fingerprint for each task's data.
 
 
 ### Maven
@@ -144,13 +153,16 @@ This leads to a significant increase in performance when compiling complex proje
 is used for large Maven projects that have a significant number of small `modules`.
 A `module` refers to a subproject within a larger project.
 Each `module` has its own `pom.xm` file, and there is an aggregator `pom.xml` that consolidates all the `modules`.
-This plugin takes a key for a `module`, it encapsulates the essential aspects of the `module`,
+This plugin takes a hash for a `module`, it encapsulates the essential aspects of the `module`,
 including the source code and the configuration of the plugins used within it.
-`Modules` with the same key are current or unchanged and the cache can efficiently restore them.
-Conversely, the cache seamlessly delegates the build work to the standard Maven core,
+`Modules` with the same hash are current or unchanged and the cache can efficiently restore them.
+In the opposite case, the cache seamlessly delegates the build work to the standard Maven core,
 without interfering with the build execution logic.
 `maven-build-cache-extension` ensures that only the changed `modules` within the project will rebuild.
 
+
+Maven's caching mechanisms operate at the level of `phases` and individual project modules.
+Therefore, existing caching systems in Maven do not align with our requirements for resolving present issues.
 
 ### EO build cache
 
@@ -184,9 +196,7 @@ Using the program name, each task can receive and store data.
 The previous caching mechanism in EO made use of distinct interfaces, specifically `Footprint` and `Optimization`.
 These caching interfaces shared similar logic, but with minor differences.
 For instance, `Footprint` verifies the EO version of the compiler, whereas the remaining checks are identical.
-Additionally, the conditions for searching data in the cache had errors. 
-The cached file is considered valid if the end time of goal's execution
-and the time of saving goal's result to the cache are equal.
+Additionally, the conditions for searching data in the cache had errors.
 Due to this issue, the program behaved incorrectly, because saving the goal's result to the cache is not instantaneous.
 After conducting an in-depth analysis of the project's incorrect operation,
 several disadvantages of the previous caching mechanism in EO were brought to light:
@@ -197,33 +207,15 @@ several disadvantages of the previous caching mechanism in EO were brought to li
 leading to redundancy and complicating the caching infrastructure.
 
 
-To address caching challenges in EO, we closely examined existing caching systems.
-Maven's caching mechanisms operate at the level of `phases` and individual project modules.
-However, we require a caching mechanism at the level of `goals`.
-Consequently, the existing caching systems in Maven do not align with our requirements for resolving present issues.
-Furthermore, we cannot use the `ccache` as the basis for creating caching in EO because `ccache` is a high-level tool
-and cannot work with individual compilation tasks.
-The concept of `Gradle Incremental build` bears resemblance to a tool that is essential for our purposes.
-It has the capability to manage separate compilation tasks based on inputs and outputs.
-However, an incremental build in Gradle may be redundant for the EO.
-In contrast to other programming languages, EO currently lacks pre-existing libraries that can be integrated 
-into the project.
-Consequently, there is no need to generate a fingerprint for each task's data. 
+To address caching challenges in EO, we closely examined existing caching systems. However, we cannot use them.
+We require a caching mechanism at the level of `goals`.
+In fact, we don't need to invent a new caching mechanism for EO.
 Instead, it suffices to verify the last modification time of the files involved in EO compilation.
 The modification time of the preceding task must not exceed that of the subsequent one.
 As each task possesses directories for input and output data, accessing the desired file 
 via an absolute path enables retrieval of essential information, as file name and last modified time,
 from the file attributes without reading the file context.
 
-
-### Conclusion
-Summarizing the work completed, we can outline the following:
-1) We highlighted the main problems of the current caching mechanism in EO. 
-The problems stem from both the logic of the code and its architecture. 
-2) We examined existing project build systems and realized that the EO language is much simpler
-than existing programming languages.
-This realization led us to conclude that existing caching methods are redundant for EO.
-3) We proposed ideas to solve problems in the current caching implementation.
 
 
 
