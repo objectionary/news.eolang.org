@@ -28,7 +28,7 @@ in order to gain a deeper understanding of the caching concepts employed within 
 ### ccache/sccache
 In compiled programming languages, building a project with many source code files takes a long time.
 This time is spent on loading of libraries, preparing, optimizing, checking the code, and so on.
-Let's look at the assembly scheme using C++ as an example:
+Let's look at the assembly scheme using C++ as an example [Picture 1](/images/defaultCPhase.svg):
 
 <p align="center">
   <img src="/images/defaultCPhase.svg">
@@ -72,22 +72,21 @@ Otherwise, the project might fail to build, resulting in errors.
 And `sccache` supports a wider range of languages, while `ccache` focuses on caching C and C++ compiler.
 
 
-`ccache` is a high-level tool and cannot work with individual compilation tasks,
-therefore `ccache` is not suitable for solving our problems.
-However, the concept of non-local data storage could potentially be incorporated during the development of the EO.
+`ccache` cannot work with individual compilation tasks (e.g. `Maven goal` or `Gradle task`).
+However, the hashing approach and the concept of non-local data storage could potentially
+be incorporated during the development of the EO caching mechanism.
 
 
 ### Gradle
 [Gradle](https://gradle.org) builds projects using a
 [task graph](https://docs.gradle.org/current/userguide/build_lifecycle.html) that allows for synchronous execution 
-of certain tasks.
+of certain tasks. A task represents a unit of work in `Gradle` project.
 `Gradle` employs
 [Incremental build](https://docs.gradle.org/current/userguide/incremental_build.html#sec:how_does_it_work),
 to speed up project builds.
 For an incremental build to work, the tasks used to build the project must have specified
 input and output files.
-The provided code snippet demonstrates the implementation of a custom task in Gradle,
-showcasing how inputs and outputs are specified to enable `Incremental build`:
+The provided code snippet demonstrates the implementation of a task in Gradle:
 ```
 task myTask {
     inputs.file 'src/main/java/MyTask.somebody' // Specify the input file
@@ -102,25 +101,25 @@ task myTask {
 
 
 To understand how `Incremental build` works, consider the following steps:
-1) Before executing a task, `Gradle` takes a hash of the path and contents of the inputs files and saves it.
-   The hash is considered current if the last modification time
-   and the size of the source files have not changed.
-2) Then `Gradle` executes the task and saves a hash of the path and contents of the output files.
+`Incremental build` uses a hash to detect changes in the inputs and the outputs.
+The single hash contains the paths and the contents of all the input files or output files.
+1) Before executing a task, `Gradle` takes a hash of the input files and saves it.
+   The hash is considered valid if the last modification time and the size of the source files have not changed.
+2) Then `Gradle` executes the task and saves a hash of the output files.
 3) Then, when Gradle starts a project build again, it generates a new hash for the same files.
-   If the new hash is current, Gradle can safely skip this task. 
+   If the new hash is valid, Gradle can safely skip this task. 
    In the opposite case, the task performs an action again and rewrites outputs.
 
 
-In addition to `Incremental build`, `Gradle` also stores hashes of previous builds, enabling quick project builds,
+In addition to `Incremental build`, `Gradle` also stores hash of previous each build, enabling quick project builds,
 for example when switching from one git branch to another. This feature is known as 
 the [Build Cache](https://docs.gradle.org/current/userguide/build_cache.html).
 
 
-The concept of `Gradle Incremental build` bears resemblance to a tool that is essential for our purposes.
-It has the capability to manage separate compilation tasks based on inputs and outputs.
-However, an incremental build in Gradle may be redundant for the EO.
-In contrast to other programming languages, EO currently lacks pre-existing libraries that can be integrated
-into the project. Consequently, there is no need to generate a fingerprint for each task's data.
+`Gradle Incremental build` can manage separate compilation tasks based on inputs and outputs.
+And the EO compiler consists from a unit of work in `Maven` (the last section contains a detailed description).
+Steps of the EO compiler can have input and output files.
+Building upon the concept of `Gradle Incremental Build`, we can use its principles to develop the EO caching mechanism.
 
 
 ### Maven
@@ -129,6 +128,7 @@ into the project. Consequently, there is no need to generate a fingerprint for e
 [Maven LifeCycles](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html), 
 which include default, clean, and site lifecycles. 
 Each lifecycle consists of `phases` and these `phases` consist of sets of `goals`.
+One `phase` can consist of several `goals`.
 
 In Maven, there are default phases and goals for building any projects:
 
@@ -136,33 +136,54 @@ In Maven, there are default phases and goals for building any projects:
   <img src="/images/defaultPhaseMaven.svg">
 </p>
 
-By default, the `phases` in Maven are inherently connected within the build lifecycle.
-Each `phase` represents a specific task, and the execution order of `goals` within `phases` is determined 
-by the default Maven lifecycle bindings. This means that while each `phase` operates as a series of individual tasks
-and their execution order is predefined by Maven.
+In Maven, the `phases` are inherently interconnected within the build lifecycle.
+A `phase` represents a specific task, and the execution order of `phases` is determined by the default Maven 
+lifecycle bindings. Each `phase` functions as a series of individual tasks known as `goals`.
+There are `goals` tied to the Maven lifecycle, as shown in [Picture 2](/images/defaultPhaseMaven.svg).
+It's also possible to add a new `goal` to a desired phase by modifying the `pom.xml` file. 
+Additionally, Maven also supports `goals` that are not bound to any build phase
+and can be executed outside the build lifecycle, directly through the command line.
+The sequence of achieving `goals` is as follows:
+1) The `goals` tied to the Maven lifecycle are executed first.
+2) The `goals` added to the `pom.xml` file  are executed second.
+3) The `goals` that are not tied to `phases` can be executed last.
 
 
-`Maven` utilizes caching mechanisms through the `takari-lifecycle-plugin` and `maven-build-cache-extension`:
+`Maven` can utilize caching mechanisms through the `takari-lifecycle-plugin` and `maven-build-cache-extension`:
+
 * The [takari-lifecycle-plugin](http://takari.io/book/40-lifecycle.html) is an alternative to the default Maven lifecycle 
-(building JAR files). Its distinctive feature is the use of a single universal plugin with the same functionality 
-as five separate plugins for the standard lifecycle, but with significantly fewer dependencies. As a result,
-it provides a much faster startup, more optimal operation, and lower resource consumption.
-This leads to a significant increase in performance when compiling complex projects with a large number of modules.
+(building JAR files). Its distinct feature lies in the use of a single universal plugin with the equivalent
+functionality to plugins for the standard lifecycle, but with significantly fewer dependencies. This plugin leverages 
+[The Takari Incremental API](https://github.com/takari/io.takari.incrementalbuild), 
+which introduces the concept of `builders`. These `builders` are user-provided public non-abstract
+top-level classes that implement specific build actions, denoted as methods annotated `@Builder`.
+They can produce various types of outputs, including generated/output files on the filesystem, 
+build messages, and project model mutations. For each `@Builder` annotated method, a maven mojo,
+which represents a maven `goal`, is generated.
+When a `builder` is run for a given set of inputs, it produces and saves to the specified directory the same outputs. 
+Any changes in the inputs result in the removal of outputs.
+
 
 * The [maven-build-cache-extension](https://maven.apache.org/extensions/maven-build-cache-extension/)
-is used for large Maven projects that have a significant number of small `modules`.
+is utilized for large Maven projects that have a significant number of small `modules`.
 A `module` refers to a subproject within a larger project.
 Each `module` has its own `pom.xm` file, and there is an aggregator `pom.xml` that consolidates all the `modules`.
-This plugin takes a hash for a `module`, it encapsulates the essential aspects of the `module`,
-including the source code and the configuration of the plugins used within it.
-`Modules` with the same hash are current or unchanged and the cache can efficiently restore them.
+This plugin takes a hash from `module` inputs and stores outputs in the cache.
+The cache restores unchanged `modules`.  
 In the opposite case, the cache seamlessly delegates the build work to the standard Maven core,
 without interfering with the build execution logic.
-`maven-build-cache-extension` ensures that only the changed `modules` within the project will rebuild.
+
+  
+Let's clarify upfront that the Maven Build Cache Extension is not suitable for caching EO compilation stages,
+as it is designed for caching at the module level within a project and not for individual tasks.
 
 
-Maven's caching mechanisms operate at the level of `phases` and individual project modules.
-Therefore, existing caching systems in Maven do not align with our requirements for resolving present issues.
+Special attention should be given to the Takari Incremental API. 
+This API can be applied to cache EO compilation stages as it operates with `goals`.
+It does not use hashing algorithms, which can slow down project build times,
+and it does not have separate cache directories.
+Each `builder` has own directories for input and output data related to their work.
+The operational principle of the Takari Incremental API is similar to the operation of caching in EO.
 
 ### EO build cache
 
@@ -199,7 +220,7 @@ For instance, `Footprint` verifies the EO version of the compiler, whereas the r
 Additionally, the conditions for searching data in the cache had errors.
 Due to this issue, the program behaved incorrectly, because saving the goal's result to the cache is not instantaneous.
 After conducting an in-depth analysis of the project's incorrect operation,
-several disadvantages of the previous caching mechanism in EO were brought to light:
+several disadvantages of the previous EO caching mechanism were brought to light:
 * Incorrect search conditions for data in the cache.
 * The verification method requires reading the file content, which results in inefficiencies.
 * The presence of multiple caching mechanisms creates challenges in identifying and rectifying caching errors.
@@ -207,18 +228,47 @@ several disadvantages of the previous caching mechanism in EO were brought to li
 leading to redundancy and complicating the caching infrastructure.
 
 
-To address caching challenges in EO, we closely examined existing caching systems. However, we cannot use them.
-We require a caching mechanism at the level of `goals`.
-In fact, we don't need to invent a new caching mechanism for EO.
-Instead, it suffices to verify the last modification time of the files involved in EO compilation.
-The modification time of the preceding task must not exceed that of the subsequent one.
-As each task possesses directories for input and output data, accessing the desired file 
-via an absolute path enables retrieval of essential information, as file name and last modified time,
-from the file attributes without reading the file context.
+In tackling caching challenges within EO, we conducted a thorough evaluation of current caching systems.
+Most existing caching systems are not suitable for the EO project.
+However, one candidate emerged as a potential solution for caching EO compilation stages: the Takari Incremental API.
+The Takari Incremental API exhibits key similarities with the EO caching system,
+notably in its utilization of inputs and outputs directories, absence of a hash for data storage and retrieval,
+and compatibility with Maven goals.
+However, it diverges from the EO caching approach in one significant aspect – the absence of a distinct cache directory.
+
+We can try to use this API or implement our own caching approach, correcting the disadvantages found.
+The envisioned approach involves the creation of a singular class responsible
+for storing and retrieving data from the cache.
+The logic for checking the relevance of cached data is presented below:
+1) We create EO program, named "example".
+   Intermediate files during compilation of this program will have the same name, but not the format
+   (e.g. `example.eo`, `example.xml`).
+2) When the EO compiler compiles this program task, it saves intermediate files of compilation steps into cache.
+   Each compilation step has own caching directory.
+3) When the EO compiler starts a project build again, it will check if there is a file, named "example",
+   in the cache of each step. If such a file exists,
+   then it is enough to check that the last modification time of this file at the current step
+   is later than at the previous step. If this condition is true,
+   then the finished file can be retrieved from the cache.
+   Below is a diagram illustrating the EO compilation steps, which have caching directory for EO version `0.34.0`:
+
+<p align="center">
+  <img src="/images/SavingInCacheEO.svg">
+</p>
+
+4) If the EO program file [Picture 5](/images/RewritingInCacheEO1.svg) 
+   or an intermediate file [Picture 6](/images/RewritingInCacheEO2.svg) have changed,
+   then the previously cached files becomes invalid.
+   In this case, the compilation step performs an action again and rewrites outputs.
+
+<p align="center">
+  <img src="/images/RewritingInCacheEO1.svg">
+</p>
 
 
-
-
+<p align="center">
+  <img src="/images/RewritingInCacheEO2.svg">
+</p>
 
 
 

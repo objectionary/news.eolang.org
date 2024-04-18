@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="350">
+    <text x="150" y="25" font-size="17" font-weight="bold" text-anchor="middle">Saving in EO Cache</text>
+
+    <text x="65" y="55" font-size="12" font-weight="bold" text-anchor="middle">Compilation steps</text>
+    <text x="175" y="55" font-size="12" font-weight="bold" text-anchor="middle">Cached file</text>
+    <text x="255" y="45" font-size="12" font-weight="bold" text-anchor="middle">Last</text>
+    <text x="255" y="55" font-size="12" font-weight="bold" text-anchor="middle">modification</text>
+    <text x="255" y="65" font-size="12" font-weight="bold" text-anchor="middle">time</text>
+
+    <defs>
+        <marker id="arrowhead" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10" fill="black" />
+        </marker>
+    </defs>
+
+    <!-- Times -->
+    <rect x="230" y="80" width="60" height="20" fill="lightyellow" stroke="black" />
+    <text x="260" y="92" fill="#000000" font-size="12" text-anchor="middle">00:00:10</text>
+
+    <rect x="230" y="135" width="60" height="20" fill="lightyellow" stroke="black" />
+    <text x="260" y="148" fill="#000000" font-size="12" text-anchor="middle">00:00:15</text>
+
+    <rect x="230" y="205" width="60" height="20" fill="lightyellow" stroke="black" />
+    <text x="260" y="218" fill="#000000" font-size="12" text-anchor="middle">00:00:20</text>
+
+    <rect x="230" y="275" width="60" height="20" fill="lightyellow" stroke="black" />
+    <text x="260" y="288" fill="#000000" font-size="12" text-anchor="middle">00:00:25</text>
+
+
+    <!-- Files -->
+    <rect x="20" y="80" width="80" height="20" fill="lightblue" stroke="black" />
+    <text x="60" y="92" fill="#000000" font-size="12" text-anchor="middle">example.eo</text>
+    <line x1="60" y1="100" x2="60" y2="130" stroke="black" marker-end="url(#arrowhead)" stroke-width="2" />
+
+    <rect x="140" y="135" width="80" height="20" fill="lightblue" stroke="black" />
+    <text x="180" y="147" fill="#000000" font-size="12" text-anchor="middle">example.xml</text>
+    <line x1="120" y1="145" x2="140" y2="145" stroke="black" marker-end="url(#arrowhead)" stroke-width="2" />
+
+    <rect x="140" y="205" width="80" height="20" fill="lightblue" stroke="black" />
+    <text x="180" y="218" fill="#000000" font-size="12" text-anchor="middle">example.xml</text>
+    <line x1="120" y1="215" x2="140" y2="215" stroke="black" marker-end="url(#arrowhead)" stroke-width="2" />
+
+    <rect x="140" y="275" width="80" height="20" fill="lightblue" stroke="black" />
+    <text x="180" y="288" fill="#000000" font-size="12" text-anchor="middle">example.xml</text>
+    <line x1="120" y1="285" x2="140" y2="285" stroke="black" marker-end="url(#arrowhead)" stroke-width="2" />
+
+
+    <!-- Compiler steps -->
+    <rect x="10" y="130" width="110" height="30" fill="lightgreen" stroke="black" />
+    <text x="65" y="150" fill="#000000" font-size="16" text-anchor="middle">ParseMojo</text>
+    <line x1="60" y1="160" x2="60" y2="200" stroke="black" marker-end="url(#arrowhead)" stroke-width="3" />
+
+    <rect x="10" y="200" width="110" height="30" fill="lightgreen" stroke="black" />
+    <text x="65" y="220" fill="#000000" font-size="16" text-anchor="middle">OptimizeMojo</text>
+    <line x1="60" y1="230" x2="60" y2="270" stroke="black" marker-end="url(#arrowhead)" stroke-width="3" />
+
+    <rect x="10" y="270" width="110" height="30" fill="lightgreen" stroke="black" />
+    <text x="65" y="290" fill="#000000" font-size="16" text-anchor="middle">ShakeMojo</text>
+
+</svg>
