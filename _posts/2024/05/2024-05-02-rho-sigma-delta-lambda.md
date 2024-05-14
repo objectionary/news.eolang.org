@@ -1,7 +1,7 @@
 ---
 layout: post
 date: 2024-05-14
-title: "Rho, Sigma, and Other Fantastic Beasts of EO"
+title: "Rho, Sigma and Other Fantastic Beasts of EO"
 author: maxonfjvipon
 
 ---
