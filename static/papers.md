@@ -25,7 +25,7 @@ Proceedings of the 26th International Conference on Knowledge-Based and Intellig
 * Joseph Afriyie Attakorah, Vitaliy Korzun, Eugene Popov, Hadi Saleh (2022),
 [EOLANG Book](https://www.objectionary.com/eo-book/book.pdf)
 
-A. I. Legalov, Y. G. Bugayenko, N. K. Chuykin, M. V. Shipitsin, Y. I. Riabtsev, A. N. Kamenskiy (2023),
+* A. I. Legalov, Y. G. Bugayenko, N. K. Chuykin, M. V. Shipitsin, Y. I. Riabtsev, A. N. Kamenskiy (2023),
 [Transformation of C Programming Language Memory Model into Object-Oriented Representation of EO Language](https://dl.acm.org/doi/10.3103/S0146411623070088),
 Automatic Control and Computer Sciences, Volume 57, Issue 7, Dec 2023
 
