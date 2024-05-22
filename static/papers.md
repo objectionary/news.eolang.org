@@ -25,9 +25,9 @@ Proceedings of the 26th International Conference on Knowledge-Based and Intellig
 * Joseph Afriyie Attakorah, Vitaliy Korzun, Eugene Popov, Hadi Saleh (2022),
 [EOLANG Book](https://www.objectionary.com/eo-book/book.pdf)
 
-* Легалов А.И., Бугаенко Е.Г., Чуйкин Н.К., Шипицин М.В., Рябцев Я.И., Каменский А.Н. (2022),
-[Трансформация модели памяти языка программирования C в объектно-ориентированное представление на языке EO](https://www.mais-journal.ru/jour/article/view/1715),
-Моделирование и анализ информационных систем, 9(3):246-264.
+A. I. Legalov, Y. G. Bugayenko, N. K. Chuykin, M. V. Shipitsin, Y. I. Riabtsev, A. N. Kamenskiy (2023),
+[Transformation of C Programming Language Memory Model into Object-Oriented Representation of EO Language](https://dl.acm.org/doi/10.3103/S0146411623070088),
+Automatic Control and Computer Sciences, Volume 57, Issue 7, Dec 2023
 
 * Vitaliy Korbashov, Nikolai Kudasov, Mikhail Olokin, and Violetta Sim (2022),
 [Detecting unjustified assumptions in subclasses via EO representation](https://arxiv.org/abs/2209.01803),
