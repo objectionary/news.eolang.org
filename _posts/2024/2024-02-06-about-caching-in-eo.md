@@ -43,7 +43,6 @@ To speed up compilation, different files of the same project might be compiled i
 3)  Then, the [Linker](https://en.wikipedia.org/wiki/Linker_(computing)) combines object files
 into an executable `.exe` file.
 
-
 To speed up the build of compiled languages, [ccache](https://ccache.dev)
 and [sccache](https://github.com/mozilla/sccache) are used.    
 `ccache` uses the hash algorithm for the hashing of code at certain stages of the build.
@@ -65,22 +64,18 @@ When using this mode, the user must ensure that the external libraries used in a
 Otherwise, the project might fail to build, resulting in errors.
 2) `Preprocessor mode` - hash is generated based on the `.cpp` file received after the preprocessor step.
 
-
 `Sccache` is similar in purpose to `ccache` but provides more functionality.
 `Sccache` allows to store cached files not only locally, but also in a cloud data storage.
 And `sccache` supports a wider range of languages, while `ccache` focuses on caching C and C++ compiler.
-
 
 `ccache` cannot work with individual compilation tasks (e.g. `Maven goal` or `Gradle task`).
 However, the hashing approach and the concept of non-local data storage could potentially
 be incorporated during the development of the EO caching mechanism.
 
-
 ### Gradle
 [Gradle](https://gradle.org) builds projects using a
 [task graph](https://docs.gradle.org/current/userguide/build_lifecycle.html) that allows for synchronous execution 
 of certain tasks. A task represents a unit of work in `Gradle` project.
-
 
 `Gradle` employs
 [Incremental build](https://docs.gradle.org/current/userguide/incremental_build.html#sec:how_does_it_work),
@@ -95,17 +90,14 @@ The single hash contains the paths and the contents of all the input files or ou
    If the new hash is valid, Gradle can safely skip this task. 
    In the opposite case, the task performs an action again and rewrites outputs.
 
-
 In addition to `Incremental build`, `Gradle` also stores hash of each previous build, enabling quick project builds,
 for example when switching from one git branch to another. This feature is known as 
 the [Build Cache](https://docs.gradle.org/current/userguide/build_cache.html).
-
 
 `Gradle Incremental build` can manage separate compilation tasks based on inputs and outputs.
 And the EO compiler consists of a unit of work in `Maven` (the last section contains a detailed description).
 Steps of the EO compiler can have input and output files.
 Building upon the concept of `Gradle Incremental Build`, we can use its principles to develop the EO caching mechanism.
-
 
 ### Maven
 [Maven](https://maven.apache.org) automates and manages Java-project builds.
@@ -127,22 +119,17 @@ It's also possible to add a new `goal` to a desired phase by modifying the `pom.
 Additionally, Maven also supports `goals` that are not bound to any build phase
 and can be executed outside the build lifecycle, directly through the command line.
 
-
 `Maven` can utilize caching mechanisms through the `takari-lifecycle-plugin` and `maven-build-cache-extension`:
-
 * The [takari-lifecycle-plugin](http://takari.io/book/40-lifecycle.html) is an alternative to the default Maven lifecycle 
 (building JAR files). Its distinct feature lies in the use of a single universal plugin with the equivalent
 functionality to plugins for the standard lifecycle, but with significantly fewer dependencies. This plugin leverages 
 [The Takari Incremental API](https://github.com/takari/io.takari.incrementalbuild), 
 which introduces the concept of `builders`. These `builders` are user-provided public non-abstract
-top-level classes that implement specific build actions.
-They can produce various types of outputs, including generated/output files on the filesystem, 
-build messages, and project model mutations. For each `builder` annotated method, a maven mojo, 
-which represents a maven `goal`, is generated.
-When a `builder` is run for a given set of inputs, it produces and saves to the specified directory the same outputs. 
+top-level classes that implement specific build actions. `Builders` work as part of the Maven lifecycle.
+When a `builder` is run for a given set of inputs, it produces and saves to the specified directory the same outputs.
 Any changes in the inputs result in the removal of outputs.
-
-
+They can produce various types of outputs, including generated/output files on the filesystem, 
+build messages, and project model mutations.
 * The [maven-build-cache-extension](https://maven.apache.org/extensions/maven-build-cache-extension/)
 is utilized for large Maven projects that have a significant number of small `modules`.
 A `module` refers to a subproject within a larger project.
@@ -151,17 +138,15 @@ This plugin takes a hash from `module` inputs and stores outputs in the cache.
 The cache restores unchanged `modules`.  
 In the opposite case, the cache seamlessly delegates the build work to the standard Maven core,
 without interfering with the build execution logic.
-
   
 Let's clarify upfront that the Maven Build Cache Extension is not suitable for caching EO compilation stages,
 as it is designed for caching at the module level within a project and not for individual tasks.
 
-
 Special attention should be given to the Takari Incremental API. 
 This API can be applied to cache EO compilation stages as it operates with `goals`.
 It does not use hashing algorithms, which can slow down project build times,
-and it does not have separate cache directories.
-Each `builder` has own directories for input and output data related to their work.
+and it does not have separate cache directories. The Takari checks the last modification time of the input files.
+It doesn't create a hash.
 
 ### EO build cache
 
@@ -176,11 +161,9 @@ Below is a diagram illustrating the main phases and their corresponding goals fo
 
 In [Picture 3](/images/EO.svg) the goals of the `eo-maven-plugin` are highlighted in green.
 
-
 However, the actual work with EO code takes place in `AssembleMojo`.
 `AssembleMojo` is the goal consisting of other goals that work with the EO file, as shown in
 [Picture 4](/images/AssembleMojo.svg).
-
 
 <p align="center">
   <img src="/images/AssembleMojo.svg">
@@ -190,7 +173,6 @@ Each goal within `AssembleMojo` is a distinct compilation step for EO code.
 These goals happen one after the other. Each goal has directories for input and output data,
 as well as a directory for storing cached data.
 Using the program name, each goal can receive and store data.
-
 
 The previous caching mechanism in EO made use of distinct interfaces, specifically `Footprint` and `Optimization`.
 These caching interfaces shared similar logic, but with minor differences.
@@ -204,7 +186,6 @@ several disadvantages of the previous EO caching mechanism were brought to light
 * The presence of multiple caching mechanisms creates challenges in identifying and rectifying caching errors.
 * Employing multiple caching mechanisms for similar entities is a suboptimal practice, 
 leading to redundancy and complicating the caching infrastructure.
-
 
 In tackling caching challenges within EO, we conducted a thorough evaluation of current caching systems.
 Most existing caching systems are not suitable for the EO project.
@@ -220,13 +201,13 @@ for storing and retrieving data from the cache.
 The logic for checking the relevance of cached data is presented below:
 1) We create EO program, named "example".
    Intermediate files during compilation of this program will have the same name, but not the format
-   (e.g. `example.eo`, `example.xml`).
-2) When the EO compiler compiles this program task, it saves files of compilation steps into cache.
-   Each compilation step has its own caching directory.
-3) When the EO compiler starts a project build again, it will check if there is a file, named "example",
+   (e.g. `example.eo`, `example.xml`). 
+   When the EO compiler assembles this program task, it saves files of compilation steps into cache.
+   Each compilation step has its own caching directory and an input file directory.
+2) When the EO compiler starts a project build again, it will check if there is the input file, named "example",
    in the cache of step. If such a file exists,
-   then it is enough to check that the last modification time of this file at the current step
-   is later than at the previous step. If this condition is true,
+   then it is enough to check that the last modification time of cached file at the current step
+   is later than the input file. If this condition is true,
    then the finished file can be retrieved from the cache.
    Below is a diagram illustrating the EO compilation steps, which have caching directory for EO version `0.34.0`:
 
@@ -235,14 +216,13 @@ The logic for checking the relevance of cached data is presented below:
 </p>
 
 4) If the EO program file [Picture 5](/images/RewritingInCacheEO1.svg) 
-   or an intermediate file [Picture 6](/images/RewritingInCacheEO2.svg) have changed,
+   or any input file [Picture 6](/images/RewritingInCacheEO2.svg) have changed,
    then the previously cached files become invalid.
    In this case, the compilation step performs an action again and rewrites outputs.
 
 <p align="center">
   <img src="/images/RewritingInCacheEO1.svg">
 </p>
-
 
 <p align="center">
   <img src="/images/RewritingInCacheEO2.svg">
