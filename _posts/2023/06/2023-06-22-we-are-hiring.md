@@ -1,7 +1,7 @@
 ---
 layout: post
 date: 2023-06-22
-title: "We are hiring!"
+title: "We Are Hiring!"
 author: yegor256
 ---
 
