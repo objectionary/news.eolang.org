@@ -1,7 +1,7 @@
 ---
 layout: post
 date: 2023-12-19
-title: "Recursive tuple and varargs"
+title: "Recursive Tuple and Varargs"
 author: maxonfjvipon
 ---
 

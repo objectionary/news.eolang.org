@@ -1,7 +1,7 @@
 ---
 layout: post
 date: 2024-04-26
-title: "Bye, bye, bool!"
+title: "Bye-bye, bool!"
 author: maxonfjvipon
 
 ---

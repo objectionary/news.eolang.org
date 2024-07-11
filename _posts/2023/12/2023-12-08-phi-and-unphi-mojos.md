@@ -1,7 +1,7 @@
 ---
 layout: post
 date: 2023-12-08
-title: "Convert EO to φ-calculus expression and back"
+title: "Convert EO to φ-calculus Expression and Back"
 author: maxonfjvipon
 ---
 
