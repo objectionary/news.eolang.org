@@ -6,10 +6,12 @@ author: yegor256
 ---
 
 XMIR is a dialect of [XML](https://en.wikipedia.org/wiki/XML), which we use to represent a parsed
-  [EO](https://www.eolang.org) program. It is a pretty simple format, which has a few
-  important tricks, which I share below in this blog post. You may
-  also want to check our [schema](https://en.wikipedia.org/wiki/XML_schema):
-  [`XMIR.xsd`](https://raw.githubusercontent.com/objectionary/eo/gh-pages/XMIR.xsd).
+[EO](https://www.eolang.org) program. It is a pretty simple format, which has a few
+important tricks, which I share below in this blog post. You may
+also want to check our [schema](https://en.wikipedia.org/wiki/XML_schema):
+[`XMIR.xsd`](https://raw.githubusercontent.com/objectionary/eo/gh-pages/XMIR.xsd)
+(it is also [rendered in HTML](https://www.eolang.org/XMIR.html),
+which may be more readable for some of you).
 
 <!--more-->
 
@@ -68,10 +70,10 @@ any optimizations), you will get this XMIR:
 The element `<program>` is the root element and it will always be there.
 It has a few mandatory attributes:
 
-  * `ms` is how much time in milliseconds it took to parse the program and generate this XMIR file,
-  * `name` is the name of the program, as it was given to the parser,
-  * `time` is the time in ISO 8601 format when the file was generated,
-  * `version` is the version of the parser.
+* `ms` is how much time in milliseconds it took to parse the program and generate this XMIR file,
+* `name` is the name of the program, as it was given to the parser,
+* `time` is the time in ISO 8601 format when the file was generated,
+* `version` is the version of the parser.
 
 The `<listing>` element contains the source code of the EO program, which was parsed, without
 any modifiations, "as is."
