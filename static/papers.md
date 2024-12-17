@@ -42,7 +42,7 @@ arXiv
 arXiv
 
 * Nikolai Kudasov and Violetta Sim (2022),
-[Formalizing 𝜑-calculus-Calculus: A Purely Object-Oriented Calculus of Decorated Objects](https://dl.acm.org/doi/10.1145/3611096.3611103),
+[Formalizing 𝜑-calculus-Calculus: A Purely Object-Oriented Calculus of Decorated Objects](https://dl.acm.org/doi/10.1145/3611096.3611103), [Formalizing 𝜑-calculus-Calculus: A Purely Object-Oriented Calculus of Decorated Objects]([Copy on arXiv](https://arxiv.org/abs/2204.07454))
 Proceedings of the 24th ACM International Workshop on Formal Techniques for Java-like Programs
 
 * Yegor Bugayenko (2021),
