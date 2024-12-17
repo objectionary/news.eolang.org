@@ -30,7 +30,7 @@ Proceedings of the 26th International Conference on Knowledge-Based and Intellig
 Automatic Control and Computer Sciences, Volume 57, Issue 7, Dec 2023
 
 * Vitaliy Korbashov, Nikolai Kudasov, Mikhail Olokin, and Violetta Sim (2022),
-[Detecting unjustified assumptions in subclasses via EO representation](https://arxiv.org/abs/2209.01803),
+[Detecting unjustified assumptions in subclasses via EO representation](https://arxiv.org/abs/2209.01825),
 arXiv
 
 * Nikolai Kudasov, Mikhail Olokin, Oleksii Potyomkin, Nikolay Shilov, and Maxim Stepanov (2022),
