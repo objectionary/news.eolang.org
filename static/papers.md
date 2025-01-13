@@ -30,7 +30,7 @@ Proceedings of the 26th International Conference on Knowledge-Based and Intellig
 Automatic Control and Computer Sciences, Volume 57, Issue 7, Dec 2023
 
 * Vitaliy Korbashov, Nikolai Kudasov, Mikhail Olokin, and Violetta Sim (2022),
-[Detecting unjustified assumptions in subclasses via EO representation](https://arxiv.org/abs/2209.01803),
+[Detecting unjustified assumptions in subclasses via EO representation](https://arxiv.org/abs/2209.01825),
 arXiv
 
 * Nikolai Kudasov, Mikhail Olokin, Oleksii Potyomkin, Nikolay Shilov, and Maxim Stepanov (2022),
@@ -42,7 +42,7 @@ arXiv
 arXiv
 
 * Nikolai Kudasov and Violetta Sim (2022),
-[Formalizing 𝜑-calculus-Calculus: A Purely Object-Oriented Calculus of Decorated Objects](https://dl.acm.org/doi/10.1145/3611096.3611103),
+[Formalizing 𝜑-calculus-Calculus: A Purely Object-Oriented Calculus of Decorated Objects](https://dl.acm.org/doi/10.1145/3611096.3611103), ([Copy on arXiv](https://arxiv.org/abs/2204.07454))
 Proceedings of the 24th ACM International Workshop on Formal Techniques for Java-like Programs
 
 * Yegor Bugayenko (2021),
