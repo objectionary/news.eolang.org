@@ -35,12 +35,8 @@ we will get this XMIR (or very similar):
 
 ```xml
 <program xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- dob="2024-12-27T11:00:08"
- ms="98"
- name="app"
- revision="27abe8b"
- source="/Volumes/sec/code/tmp/eo/app.eo"
- time="2025-01-13T09:32:04.455112Z"
+ dob="2024-12-27T11:00:08" ms="98" name="app" revision="27abe8b"
+ source="app.eo" time="2025-01-13T09:32:04.455112Z"
  version="0.50.0"
  xsi:noNamespaceSchemaLocation="https://www.eolang.org/xsd/XMIR-0.50.0.xsd">
  <listing># Simple app.
