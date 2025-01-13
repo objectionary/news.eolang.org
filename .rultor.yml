@@ -27,4 +27,3 @@ install: |
 merge:
   script: |
     bundle exec jekyll build
-

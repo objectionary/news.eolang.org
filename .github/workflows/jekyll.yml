@@ -21,7 +21,7 @@
 # SOFTWARE.
 ---
 name: jekyll
-on:
+'on':
   push:
     branches:
       - master
