@@ -20,45 +20,34 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 ---
-title: News About EO Programming Language
-email: team@eolang.org
-description: >
-  Here we post most recent news about
-  EO programming language and 𝜑-calculus
-baseurl: ""
-url: "https://news.eolang.org"
-twitter_username: objectionary
-github_username: objectionary
-markdown: kramdown
-author:
-  name: "EO"
-  email: team@eolang.org
-encoding: utf-8
-timezone: Europe/Moscow
-permalink: :year-:month-:day-:title.html
-exclude:
-  - README.md
-  - Gemfile.lock
-  - Gemfile
-  - Rakefile
-  - LICENSE.txt
-  - id_rsa.enc
-
-plugins:
-  - jekyll-feed
-  - jekyll-paginate
-  - jekyll-sitemap
-
-paginate: 8
-paginate_path: "p/:num"
-excerpt_separator: <!--more-->
-
-feed:
-  title: news.eolang.org
-  subtitle: News about EO programming language
-  path: rss.xml
-
-sass:
-  style: compressed
-  deploy_style: compressed
-  compile_in_place: false
+name: copyrights
+'on':
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  copyrights:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: yegor256/copyrights-action@0.0.8
+        with:
+          globs: >-
+            **/LICENSE.txt
+            **/*.sh
+            **/*.yml
+            **/*.yaml
+            **/*.eo
+            **/*.xmir
+            **/*.xml
+            **/*.xsl
+            **/*.xsd
+            **/*.ini
+            **/*.java
+            **/*.g4
+            **/*.properties
+            **/*.toml
+            **/*.groovy
