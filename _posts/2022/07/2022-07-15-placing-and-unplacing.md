@@ -97,7 +97,3 @@ Second, what is mentioned in `removeBinaries` will be deleted.
 I think it's a good practice to use `keepBinaries` option in your
 library, just to be safe and sure that nothing aside from your compiled
 atoms get into the JAR.
-
-
-
-

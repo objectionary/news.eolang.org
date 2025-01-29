@@ -6,8 +6,8 @@ author: maxonfjvipon
 ---
 
 In the recently released version [0.30.0](https://github.com/objectionary/eo/releases/tag/0.30.0)
-we've changed the writing mechanism of `cage` object. Until now, we could store and write to 
-`cage` any object we wanted. But `cage` became smarter and stricter and can store only objects 
+we've changed the writing mechanism of `cage` object. Until now, we could store and write to
+`cage` any object we wanted. But `cage` became smarter and stricter and can store only objects
 that have the same "form" now.
 
 <!--more-->
@@ -44,11 +44,11 @@ seq > @
   cg.write lisa
 ```
 
-Here we copy object `cage` and store the object `0` (which is "formed by" object `int`) in it, and 
+Here we copy object `cage` and store the object `0` (which is "formed by" object `int`) in it, and
 then we write an object `lisa` to it.
 
 Such behavior is prohibited now and will lead to exception throwing.
-Object `cage` can store inside only objects of the same "form." 
+Object `cage` can store inside only objects of the same "form."
 
 The next code will work since object `cat` and `lisa` have the same "form"–"cat":
 
@@ -60,9 +60,9 @@ seq > @
 ```
 
 You may wonder why we did it.
-Here it's time to talk a bit about our plans for EO.  
+Here it's time to talk a bit about our plans for EO.
 
-We believe that EO can be used as intermediate representation for performing optimizations for many 
+We believe that EO can be used as intermediate representation for performing optimizations for many
 object-oriented programming languages.
 To achieve that, we have to make EO stronger and stricter.
 This is how we're about to do it:

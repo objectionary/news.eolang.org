@@ -6,21 +6,21 @@ author: yegor256
 ---
 
 <span style="color:firebrick;"><strong>ATTENTION!</strong></span>
-We are also hiring interns (BSc and MSc students). 
-Find me in Telegram, we will discuss: 
+We are also hiring interns (BSc and MSc students).
+Find me in Telegram, we will discuss:
 [yegor256](https://t.me/yegor256).
 
 [EOLANG](https://www.eolang.org) is an R&D project, where we create a new programming language
-in order to introduce new techniques of object-oriented programming. 
+in order to introduce new techniques of object-oriented programming.
 We believe that existing object-oriented languages, such as Java and C++,
 are not strong enough in their adherence to the object paradigm
 originally introduced by Alan Kay and earlier implemented in languages
-like [Smalltalk](https://en.wikipedia.org/wiki/Smalltalk) and 
-[Self](https://en.wikipedia.org/wiki/Self_%28programming_language%29). 
-Besides that, we expect to explore the possibility 
+like [Smalltalk](https://en.wikipedia.org/wiki/Smalltalk) and
+[Self](https://en.wikipedia.org/wiki/Self_%28programming_language%29).
+Besides that, we expect to explore the possibility
 of using our new language as an intermediate representation in the
 process of optimization of mainstream languages. EOLANG is based on
-[𝜑-calculus](https://arxiv.org/abs/2111.13384), which is a formal 
+[𝜑-calculus](https://arxiv.org/abs/2111.13384), which is a formal
 foundation for it and potentially for other object-oriented languages.
 
 We have a few open positions in our team:

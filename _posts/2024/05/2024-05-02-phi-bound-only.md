@@ -5,8 +5,8 @@ title: "New Syntax for Nameless @-Bound-Only Objects"
 author: maxonfjvipon
 
 ---
-We're continuing to observe the features of the latest 
-[release](https://github.com/objectionary/eo/releases/tag/0.37.0) of EO, and today we're talking 
+We're continuing to observe the features of the latest
+[release](https://github.com/objectionary/eo/releases/tag/0.37.0) of EO, and today we're talking
 about new syntax for nameless @-bound-only objects.
 
 <!--more-->
@@ -24,7 +24,7 @@ For example, in the snippet below, objects `cat` and `dog` decorate an object `a
   animal "Woof" > @
 ```
 
-The attribute `@` is also often used in nameless abstract objects. A common example is the second 
+The attribute `@` is also often used in nameless abstract objects. A common example is the second
 argument of the object `try`:
 
 ```
@@ -36,8 +36,8 @@ try
   true
 ```
 
-We noticed quite some time ago that there are so many small objects with only the `@` attribute 
-bound. So, to simplify the code and reduce the number of indentations, we introduced new syntax for 
+We noticed quite some time ago that there are so many small objects with only the `@` attribute
+bound. So, to simplify the code and reduce the number of indentations, we introduced new syntax for
 such objects:
 
 ```
@@ -47,7 +47,7 @@ QQ.io.stdout e > [e]
 
 [e]
   QQ.io.stdout e > @
-  
+
 # OR
 
 [e]
@@ -89,7 +89,7 @@ x > []                     # object reference, the same as:
                            #     5.plus x > sum
 ```
 
-All objects in vertical notation can NOT be used with such syntax and their usage leads to a parsing 
+All objects in vertical notation can NOT be used with such syntax and their usage leads to a parsing
 exception:
 ```
 QQ.io.stdout > [e]         # vertical application - wrong

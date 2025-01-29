@@ -150,6 +150,3 @@ That's it.
 
 You can find a good example of some atoms in the
 [`eo-files`](https://github.com/objectionary/eo-files) repository.
-
-
-

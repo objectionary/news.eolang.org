@@ -5,8 +5,8 @@ title: "Convert EO to φ-calculus Expression and Back"
 author: maxonfjvipon
 ---
 
-In the recently released version [0.34.0](https://github.com/objectionary/eo/releases/tag/0.34.0), 
-we have implemented several changes to EO. Today, we will discuss the conversion of EO 
+In the recently released version [0.34.0](https://github.com/objectionary/eo/releases/tag/0.34.0),
+we have implemented several changes to EO. Today, we will discuss the conversion of EO
 to φ-calculus expression and vice versa.
 
 <!--more-->
@@ -14,7 +14,7 @@ to φ-calculus expression and vice versa.
 As you may know, φ-calculus is a formal model that we are attempting to use as a base for
 object-oriented programming languages, including EO.
 
-From now on, it is possible to convert a program written in EO to a φ-calculus expression. 
+From now on, it is possible to convert a program written in EO to a φ-calculus expression.
 Here's how you can accomplish this in your personal project.
 
 First you need to add `eo-maven-plugin` dependency:
@@ -26,7 +26,7 @@ First you need to add `eo-maven-plugin` dependency:
 </dependency>
 ```
 
-Conversion occurs in four stages: registration, parsing, optimization, and actual conversion. 
+Conversion occurs in four stages: registration, parsing, optimization, and actual conversion.
 Therefore, include the corresponding goals in your build pipeline:
 
 ```xml
@@ -60,7 +60,7 @@ Now, you are ready to convert an EO program to a φ-calculus expression. Place t
 directory and run your Maven project. When it's done, files with the `.phi` extension are placed in
 the `phiOutputDir` directory.
 
-You may also convert a φ-calculus expression back to EO. 
+You may also convert a φ-calculus expression back to EO.
 For this, your build pipeline should look like:
 
 ```xml
@@ -110,7 +110,7 @@ Here's an example of how the EO Fibonacci program looks in φ-calculus (you can 
         n.minus 2
 ```
 
-Its [XMIR](https://news.eolang.org/2022-11-25-xmir-guide.html) representation (default location is 
+Its [XMIR](https://news.eolang.org/2022-11-25-xmir-guide.html) representation (default location is
 `target/eo/2-optimize`):
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -297,13 +297,13 @@ And its φ-calculus representation:
     eo ↦ ⟦
         example ↦ ⟦
             fibonacci ↦ ⟦
-                n ↦ ∅, 
+                n ↦ ∅,
                 φ ↦ ξ.n.lt(
                     α0 ↦ Φ.org.eolang.int(
                         α0 ↦ Φ.org.eolang.bytes(Δ ⤍ 00-00-00-00-00-00-00-02)
                     )
                 ).if(
-                    α0 ↦ ξ.n, 
+                    α0 ↦ ξ.n,
                     α1 ↦ ξ.ρ.fibonacci(
                         α0 ↦ ξ.n.minus(
                             α0 ↦ Φ.org.eolang.int(
@@ -320,9 +320,9 @@ And its φ-calculus representation:
                         )
                     )
                 )
-            ⟧, 
+            ⟧,
             λ ⤍ Package
-        ⟧, 
+        ⟧,
         λ ⤍ Package
     ⟧
 }

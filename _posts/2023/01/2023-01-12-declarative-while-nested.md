@@ -43,16 +43,16 @@ Consider the following code:
 
 Here, we have two `while` loops one inside the other. Initially `x` is set to `0`.
 The outer loop continues while `x` lower than `10`. Inner loop executes its body
-twice every time it's dataized.  
+twice every time it's dataized.
 
 So what do you think the `x` will be after dataization fo the whole program?
-The answer is `15` and here is why.  
+The answer is `15` and here is why.
 
 Every time the inner `while` is dataized, `x` is incremented by `3`: two times as
 `while` iteration and one more time once the body is returned as a result. So the single
 outer `while` iteration increments `x` by three. The last true condition of the outer
-`while` would be after `3` iterations when `x=3*3=9`. The next iteration would set 
-`x` to `12` which will stop the outer loop.  
+`while` would be after `3` iterations when `x=3*3=9`. The next iteration would set
+`x` to `12` which will stop the outer loop.
 
 After that, due to its declarative nature, the outer `while` will supply its body object, which
 will be dataized one more time as requested by `seq` object. And the body happens to be the
@@ -77,5 +77,5 @@ inner `while`:
 And we already know that this object would increase `x` by `3`. So the final value of `x` will
 be set to `15`.
 
-Sometimes it might be tricky to reason about the result when working with complex objects in EO. 
+Sometimes it might be tricky to reason about the result when working with complex objects in EO.
 But it's only a matter of practice and getting used to its declarative nature.
