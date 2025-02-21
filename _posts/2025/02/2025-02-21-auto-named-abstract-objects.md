@@ -1,6 +1,6 @@
 ---
 layout: post
-date: 2025-02-22
+date: 2025-02-21
 title: "Auto named abstract objects or how to reach the ρ"
 author: maxonfjvipon
 
