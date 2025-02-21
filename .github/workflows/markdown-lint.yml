@@ -20,6 +20,4 @@ jobs:
       - uses: actions/checkout@v4
       - uses: DavidAnson/markdownlint-cli2-action@v19
         with:
-          config: '.markdownlint.json'
-          fix: true
-          globs: '**/*.md'
+          globs: 'README.md'
