@@ -6,3 +6,4 @@ Gemfile.lock
 .jekyll-metadata
 _temp/
 .jekyll-cache/
+vendor/
