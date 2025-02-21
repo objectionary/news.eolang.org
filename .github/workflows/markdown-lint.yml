@@ -19,6 +19,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: DavidAnson/markdownlint-cli2-action@v19
-        if: {{ 'false' }}
+        if: false
         with:
           globs: 'README.md'
