@@ -10,7 +10,7 @@ It's been a difficult year... It's been a while since our
 and starting by answering a question from our Telegram [chat](https://t.me/eolang_org) reader: 
 "What does the `>>` EO syntax stand for"?
 
-<!-- more -->
+<!--more-->
 
 In one of the previous releases, we introduced this EO syntax for the automated naming of abstract 
 objects. The only place where such auto-named abstract objects are allowed is as arguments of an 
