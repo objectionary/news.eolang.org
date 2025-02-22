@@ -92,7 +92,7 @@ animal "Dog" > dog
 dog.voice > woof   # I'm a Dog
 
 ```
-The main difference between `this` in Java and `ρ` in EO is the moment when these "links"   actually
+The main difference between `this` in Java and `ρ` in EO is the moment when these "links" actually
 become referred to the objects. In Java - right after the object is created, in EO - on attribute
 dispatch. Let's look a bit closer. The dynamic dispatch in EO is a mechanism of retrieving an
 attribute from the object. Syntactically it's implemented via "dot-notation".
