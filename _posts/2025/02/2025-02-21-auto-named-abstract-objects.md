@@ -3,12 +3,14 @@ layout: post
 date: 2025-02-21
 title: "Auto named abstract objects or how to reach the ρ"
 author: maxonfjvipon
-
 ---
+
 It's been a difficult year... It's been a while since our 
 [last](https://news.eolang.org/2024-05-14-rho-sigma-delta-lambda.html) blog post. Today, we're back 
 and starting by answering a question from our Telegram [chat](https://t.me/eolang_org) reader: 
 "What does the `>>` EO syntax stand for"?
+
+<!-- more -->
 
 In one of the previous releases, we introduced this EO syntax for the automated naming of abstract 
 objects. The only place where such auto-named abstract objects are allowed is as arguments of an 
