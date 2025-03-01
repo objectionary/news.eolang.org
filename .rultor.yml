@@ -3,7 +3,7 @@
 ---
 # yamllint disable rule:line-length
 docker:
-  image: yegor256/rultor-ruby
+  image: yegor256/ruby
 install: |
   sudo bundle install --no-color "--gemfile=$(pwd)/Gemfile"
 merge:
