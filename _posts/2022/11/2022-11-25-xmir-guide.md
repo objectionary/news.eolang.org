@@ -11,7 +11,7 @@ XMIR is a dialect of [XML](https://en.wikipedia.org/wiki/XML),
 which we use to represent a parsed
 [EO](https://www.eolang.org) object. It is a pretty simple format,
 which has a few
-important tricks, which I share below in this blog post. You may
+important tricks that I share below in this blog post. You may
 also want to check our [schema](https://en.wikipedia.org/wiki/XML_schema):
 [`XMIR.xsd`][xsd]
 (it is also [rendered in HTML](https://www.eolang.org/XMIR.html),
@@ -33,16 +33,16 @@ Consider this simple EO object that prints `"Hello, world!"`:
     "world!"
 ```
 
-If we parse it using `EoSyntax` class from [eo-parser],
+If we parse it using the `EoSyntax` class from [eo-parser],
 we will get this XMIR (or very similar):
 
 ```xml
-<object 
+<object
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- dob="2024-12-27T11:00:08" 
- ms="98" 
+ dob="2024-12-27T11:00:08"
+ ms="98"
  revision="27abe8b"
- time="2025-04-17T09:32:04.455112Z" 
+ time="2025-04-17T09:32:04.455112Z"
  version="0.56.0"
  xsi:noNamespaceSchemaLocation="https://www.eolang.org/xsd/XMIR-0.56.0.xsd">
  <listing># App.
@@ -180,7 +180,7 @@ of the `<tail>` separated by spaces.
 
 ## Objects
 
-The `<object>` element must contain only one `<o/>` element which represents an 
+The `<object>` element must contain only one `<o/>` element which represents an
 object being parsed. The `<o/>` element may have a few optional attributes:
 
 * `line` and `pos` are the number of the line where the object
@@ -194,7 +194,7 @@ There could be no other attributes.
 
 ## Special cases
 
-1. The `<o/>` elements that have nested `<o>` element with `name` which 
+1. The `<o/>` elements that have nested `<o>` element with `name` which
 value is `λ` are **atoms**. Atoms must not have `base` attribute:
 ```xml
 <o name="try">
@@ -220,7 +220,7 @@ nested `<o>` element with text.
 </o>
 ```
 
-4. The `name` attribute of `<o/>` element may be **auto generated** by EO parser. 
+4. The `name` attribute of `<o/>` element may be **auto generated** by EO parser.
 In such case it's look like:
 ```xml
 <o name="a🌵104"/>
@@ -229,7 +229,7 @@ In such case it's look like:
 Such `name` consists of several parts:
 - char `a` (ascii 97) that stands for "auto-generated"
 - char `🌵` that is just a pretty character prohibited by EO grammar
-- number `104` which is joined line and position of the place where 
+- number `104` which is joined line and position of the place where
 the object is found.
 
 Such names are unique through entire XMIR.
@@ -239,7 +239,7 @@ Such names are unique through entire XMIR.
 ```xml
 <o base="Q.org.eolang.number" as="α2"/>
 ```
-Here the first character is `α` (alpha), the number `2` is the position of the 
+Here the first character is `α` (alpha), the number `2` is the position of the
 attribute.
 
 <hr/>

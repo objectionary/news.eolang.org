@@ -18,7 +18,7 @@ is `FALSE`.
 
 When the condition is `TRUE` we get the result of the last dataization object in the `while` loop.
 
-When the condition is `FALSE` such dataization result become `FALSE`.
+When the condition is `FALSE` such dataization result becomes `FALSE`.
 
 Let's check it out with examples. In this case, the result of condition `x.lt 6`
 is `TRUE` for at least one iteration. So the result of dataization `when-true` object is `6`:

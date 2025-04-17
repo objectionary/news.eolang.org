@@ -195,12 +195,12 @@ The last special thing we're observing is `λ` (Lambda) asset. Let's look at it 
 - The `λ` asset, as well as the `φ` attribute, also allows reusing the attributes:
 
 ```
-[] > mars-termerature /float # measures the temperature on Mars and returns float
+[] > mars-temperature /float # measures the temperature on Mars and returns float
 
 mars-temperature.div 10 > divided
 ```
 
-Here, as you may see, `mars-termerature` is the atom that does not have an attribute `div` and
+Here, as you may see, `mars-temperature` is the atom that does not have an attribute `div` and
 returns `float`. However, we can still retrieve the attribute `div` from it. It will go to the
 `λ` asset, execute it, do some calculations, return us some `float`, and the `div` attribute will
 be taken from this `float`.

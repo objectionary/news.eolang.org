@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2022-2025 Objectionary.com
+# SPDX-License-Identifier: MIT
+
 source 'https://rubygems.org'
 
 gem 'jekyll', '~>4.3'

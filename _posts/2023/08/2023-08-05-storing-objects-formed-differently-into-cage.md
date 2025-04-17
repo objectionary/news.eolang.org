@@ -35,7 +35,7 @@ object `lisa` "was formed by" object `cat` and has the same "form"—"cat."
 Let's get back to the object `cage`. The object is used as temporary storage of objects in memory.
 It should be remembered that `cage` does not dataize a stored object.
 
-Here is the typical example how `cage` was used before:
+Here is the typical example of how `cage` was used before:
 
 ```
 cage 0 > cg
@@ -47,7 +47,7 @@ seq > @
 Here we copy object `cage` and store the object `0` (which is "formed by" object `int`) in it, and
 then we write an object `lisa` to it.
 
-Such behavior is prohibited now and will lead to exception throwing.
+Such behavior is prohibited now and will lead to an exception being thrown.
 Object `cage` can store inside only objects of the same "form."
 
 The next code will work since object `cat` and `lisa` have the same "form"–"cat":
