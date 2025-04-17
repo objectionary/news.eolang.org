@@ -230,7 +230,9 @@ Such `name` consists of several parts:
 - char `a` (ascii 97) that stands for "auto-generated"
 - char `🌵` that is just a pretty character prohibited by EO grammar
 - number `104` which is joined line and position of the place where 
-the object is found
+the object is found.
+
+Such names are unique through entire XMIR.
 
 5. If object is bound to a specific attribute not by name but by position, the
 `as` attribute may look like:
