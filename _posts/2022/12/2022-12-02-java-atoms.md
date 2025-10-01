@@ -86,7 +86,7 @@ Then, using `this.add()` you configure the attributes of the atom,
 which you can later use inside the code encapsulated by the instance of the `AtComposite`
 class.
 
-The attibute you add with `this.add("φ")` is the "body" of the atom.
+The attribute you add with `this.add("φ")` is the "body" of the atom.
 It will be evaluated when the atom will be dataized.
 
 Then, using the class `Param` you can get the value of any incoming attribute
