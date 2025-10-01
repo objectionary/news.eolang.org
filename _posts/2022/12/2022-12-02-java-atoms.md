@@ -8,7 +8,7 @@ author: yegor256
 There are "atoms" in [EO](https://www.eolang.org) language, which are objects implemented by
 the runtime platform, not by a composition of other EO objects. Most
 notable examples of atoms are `int.plus`, `float.times`, and
-`bool.while`. Here is a quick intruction to creating your own
+`bool.while`. Here is a quick instruction to creating your own
 atoms.
 
 <!--more-->
