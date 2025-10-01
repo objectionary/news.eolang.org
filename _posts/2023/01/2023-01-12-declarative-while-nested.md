@@ -45,7 +45,7 @@ Here, we have two `while` loops one inside the other. Initially `x` is set to `0
 The outer loop continues while `x` lower than `10`. Inner loop executes its body
 twice every time it's dataized.
 
-So what do you think the `x` will be after dataization fo the whole program?
+So what do you think the `x` will be after dataization of the whole program?
 The answer is `15` and here is why.
 
 Every time the inner `while` is dataized, `x` is incremented by `3`: two times as
