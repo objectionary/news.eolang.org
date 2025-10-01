@@ -1,7 +1,5 @@
 # SPDX-FileCopyrightText: Copyright (c) 2016-2025 Objectionary.com
 # SPDX-License-Identifier: MIT
 
-[words]
-extend-ignore = [
-    "Vitaliy"
-]
+[default.extend-words]
+Vitaliy = "Vitaliy"
