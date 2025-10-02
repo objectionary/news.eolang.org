@@ -86,7 +86,7 @@ The same functionality can be achieved in EO:
         ^.type
 
 animal "Cat" > cat
-cat.voice > moew   # I'm a Cat
+cat.voice > meow   # I'm a Cat
 
 animal "Dog" > dog
 dog.voice > woof   # I'm a Dog

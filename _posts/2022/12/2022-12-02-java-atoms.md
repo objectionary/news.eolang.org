@@ -8,7 +8,7 @@ author: yegor256
 There are "atoms" in [EO](https://www.eolang.org) language, which are objects implemented by
 the runtime platform, not by a composition of other EO objects. Most
 notable examples of atoms are `int.plus`, `float.times`, and
-`bool.while`. Here is a quick intruction to creating your own
+`bool.while`. Here is a quick instruction to creating your own
 atoms.
 
 <!--more-->
@@ -86,7 +86,7 @@ Then, using `this.add()` you configure the attributes of the atom,
 which you can later use inside the code encapsulated by the instance of the `AtComposite`
 class.
 
-The attibute you add with `this.add("φ")` is the "body" of the atom.
+The attribute you add with `this.add("φ")` is the "body" of the atom.
 It will be evaluated when the atom will be dataized.
 
 Then, using the class `Param` you can get the value of any incoming attribute
