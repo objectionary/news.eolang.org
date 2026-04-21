@@ -9,7 +9,7 @@ When you compile your EO code, the compiler discovers which objects
 are "foreign" and tries to find them in [Objectionary](https://github.com/objectionary/home). It finds them,
 downloads, and then compiles locally. The problem is that the objects
 in Objectionary are not static: they get new versions very often.
-That's why, in order to stabilize your build you may want
+That's why, in order to stabilize your build, you may want
 to use their fixed versions.
 
 <!--more-->
@@ -43,5 +43,5 @@ you can do it with the command line option:
 $ eoc --hash=0d94362 compile
 ```
 
-Full list of Git hashes of Objectionary is
+The full list of Git hashes of Objectionary is
 [here](https://github.com/objectionary/home/commits/master).

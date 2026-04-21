@@ -30,7 +30,7 @@ Consider the example. Here, `dog` is an abstract object with one free attribute:
 ```
 
 Abstract objects are like templates or factories for concrete objects. So, getting a specific
-instance of a `dog` occurs in two stages: copying and setting free attribute. The copying process
+instance of a `dog` occurs in two stages: copying and setting a free attribute. The copying process
 takes place behind the scenes. Thus, we obtain a new specified object, `dog`, with its `name` as
 "Bary".
 

@@ -14,7 +14,7 @@ memory > m
 m.write 42
 ```
 
-At the first line, a copy of `memory` was made and then labeled as `m`. This
+On the first line, a copy of `memory` was made and then labeled as `m`. This
 was a bug in the language. The object `memory` must not be copied if there
 are no arguments provided for the copying (application) operation.
 
@@ -30,8 +30,8 @@ m.write 42
 Here, the object `m` is a copy of `memory` with a single argument, which is
 called an "enclosure".
 
-We also deleted the attribute `memory.is-empty`, since `memory` is always
-not empty.
+We also deleted the attribute `memory.is-empty`, since `memory` is never
+empty.
 
 The same changes were applied to the object
 [`cage`](https://github.com/objectionary/home/blob/master/objects/org/eolang/cage.eo).

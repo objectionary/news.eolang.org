@@ -38,7 +38,7 @@ For example, `int.& -> eolang`, `float.div.& -> float`. Consider the next code s
 ```
 
 Here we have an endless while loop. The second argument of the object `while` is an anonymous
-abstract object, let's call him `X`. The `X` object is not used in the scope of the object `loop`;
+abstract object, let's call it `X`. The `X` object is not used in the scope of the object `loop`;
 it's just created here. The object `X` will be used inside the scope of the object `while` when
 dataization is started. But as you may see `X` has access to the scope of the object `loop` via
 `&` and may reach the attributes of `loop` like `str`.
@@ -73,8 +73,8 @@ Animal dog = new Animal("Dog");
 dog.voice();                    // I'm a Dog
 ```
 
-Here when we create two instances of `Animal` - `cat` and `dog`. The `this` keyword inside their
-functions `voice` refers to different objects - `cat` and `dog` accordingly.
+Here we create two instances of `Animal` - `cat` and `dog`. The `this` keyword inside their
+`voice` functions refers to different objects - `cat` and `dog` accordingly.
 
 The same functionality can be achieved in EO:
 ```
@@ -104,9 +104,9 @@ cat.voice
 ```
 
 We're trying to retrieve an attribute `voice` from the concrete object `cat`. At the moment we've
-found the attribute `voice` inside the object `cat` and ready to return it - the `voice` attribute
+found the attribute `voice` inside the object `cat` and are ready to return it - the `voice` attribute
 is copied and its `ρ` attribute is initialized with a link to the object `cat`. Until we touch
-`cat.voice` object its `ρ` attribute refers to `Ø` (nothing).
+the `cat.voice` object, its `ρ` attribute refers to `Ø` (nothing).
 
 A few more examples:
 
@@ -125,7 +125,7 @@ The third special attribute we're observing is `φ` (Phi). We've already describ
 one of the previous blog posts, but let's dive a bit deeper. In EO, the attribute is indicated
 by `@` sign. The attribute is not mandatory and may be absent. The `φ` attribute of the object `X`
 is the attribute that refers to the object `Y` which object `X` decorates. The main purpose of
-decoration - reuse of the attributes. For example:
+decoration is the reuse of attributes. For example:
 
 ```
 [type] > animal

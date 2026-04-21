@@ -6,9 +6,9 @@ author: maxonfjvipon
 ---
 
 In the recently released version [0.30.0](https://github.com/objectionary/eo/releases/tag/0.30.0)
-we've changed the writing mechanism of `cage` object. Until now, we could store and write to
-`cage` any object we wanted. But `cage` became smarter and stricter and can store only objects
-that have the same "form" now.
+we've changed the writing mechanism of the `cage` object. Until now, we could store and write to
+`cage` any object we wanted. But `cage` has become smarter and stricter, and can now store only objects
+that have the same "form".
 
 <!--more-->
 
@@ -60,9 +60,9 @@ seq > @
 ```
 
 You may wonder why we did it.
-Here it's time to talk a bit about our plans for EO.
+Here, it's time to talk a bit about our plans for EO.
 
-We believe that EO can be used as intermediate representation for performing optimizations for many
+We believe that EO can be used as an intermediate representation for performing optimizations for many
 object-oriented programming languages.
 To achieve that, we have to make EO stronger and stricter.
 This is how we're about to do it:

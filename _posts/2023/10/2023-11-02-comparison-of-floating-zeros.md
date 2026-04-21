@@ -5,8 +5,8 @@ title: "Comparison of 0.0 and -0.0"
 author: c71n93
 ---
 
-Due to the peculiarities of working with data in EO, an interesting quirk had been arising when comparing `0.0` and
-`-0.0.` The fact is that in EO, these two values were not considered equal until we made changes.
+Due to the peculiarities of working with data in EO, an interesting quirk arose when comparing `0.0` and
+`-0.0.` The fact is that in EO these two values were not considered equal until we made changes.
 
 Until recently, the comparison of `0.0` and `-0.0` in EO didn't work like in other languages, but we changed that. This
 short blog post provides a simplified explanation of number encodings, how such comparison takes place in popular
@@ -69,7 +69,7 @@ case in most languages.
 ### Comparison of 0.0 and -0.0 in EO now
 
 In order for the floating-point comparison in EO to comply with the standard, we have changed the behavior of the `eq`
-attribute for `float`. After these changes the comparison of `0.0` and `-0.0` behaves as follows:
+attribute for `float`. After these changes, the comparison of `0.0` and `-0.0` behaves as follows:
 
 ```
 0.0.eq -0.0 # TRUE
@@ -85,5 +85,5 @@ compares floats bitwise; we simply added a special condition for zeros.
 
 ### Conclusion
 
-We changed `eq` attribute of `float` to meet the IEEE 754 standard. Significant reasons are needed to deviate from the
+We changed the `eq` attribute of `float` to meet the IEEE 754 standard. Significant reasons are needed to deviate from the
 standard, so we decided that it would be more correct to do as in other programming languages.

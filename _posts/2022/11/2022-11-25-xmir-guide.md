@@ -120,7 +120,7 @@ which must stop the processing of the document immediately.
 ## Sheets
 
 The `<sheets>` element contains a list of all
-post-processors that were applied to the document after is parsing.
+post-processors that were applied to the document after its parsing.
 We process our XMIR documents using dozens of XSL stylesheets. That's why
 the name of the XML element. You may find something like this over there:
 
@@ -148,7 +148,7 @@ in `<object>`.
 ## Metas
 
 There may be an optional element `<metas>` with a list of `<meta>` elements.
-For example, if my source code would have this meta at the 3rd
+For example, if my source code had this meta at the 3rd
 line of the source file:
 
 ```
@@ -175,7 +175,7 @@ We would see the following in the XMIR:
 Each `<meta>` element contains parts of the meta. The `<head>`
 contains everything that goes after the `+` until the first space.
 The `<tail>` contains everything after the first space. There could
-be a number of `<part>` elements, each of which containing the parts
+be a number of `<part>` elements, each of which contains the parts
 of the `<tail>` separated by spaces.
 
 ## Objects
@@ -187,23 +187,23 @@ object being parsed. The `<o/>` element may have a few optional attributes:
 was found by the parser and the position in the line;
 * `name` is the name of the object, if the object has it;
 * `base` may refer to object formation that is being copied;
-* `as` is the name of the attribute which current object is bound to during the
+* `as` is the name of the attribute to which the current object is bound during the
 application
 
 There could be no other attributes.
 
 ## Special cases
 
-1. The `<o/>` elements that have nested `<o>` element with `name` which
-value is `λ` are **atoms**. Atoms must not have `base` attribute:
+1. The `<o/>` elements that have a nested `<o>` element with `name` whose
+value is `λ` are **atoms**. Atoms must not have a `base` attribute:
 ```xml
 <o name="try">
   <o name="λ"/>
 </o>
 ```
 
-2. The `<o/>` elements with `base` attribute which value is `∅` are **void** attributes.
-Void attributes also must have `name` attribute:
+2. The `<o/>` elements with a `base` attribute whose value is `∅` are **void** attributes.
+Void attributes also must have a `name` attribute:
 ```xml
 <o name="foo">
   <o name="bar" base="∅"/>
@@ -220,21 +220,21 @@ nested `<o>` element with text.
 </o>
 ```
 
-4. The `name` attribute of `<o/>` element may be **auto generated** by EO parser.
-In such case it's look like:
+4. The `name` attribute of an `<o/>` element may be **auto-generated** by the EO parser.
+In such a case it looks like:
 ```xml
 <o name="a🌵104"/>
 ```
 
-Such `name` consists of several parts:
+Such a `name` consists of several parts:
 - char `a` (ascii 97) that stands for "auto-generated"
 - char `🌵` that is just a pretty character prohibited by EO grammar
-- number `104` which is joined line and position of the place where
+- number `104` which is the joined line and position of the place where
 the object is found.
 
-Such names are unique through entire XMIR.
+Such names are unique throughout the entire XMIR.
 
-5. If object is bound to a specific attribute not by name but by position, the
+5. If an object is bound to a specific attribute not by name but by position, the
 `as` attribute may look like:
 ```xml
 <o base="Q.org.eolang.number" as="α2"/>
@@ -245,7 +245,7 @@ attribute.
 <hr/>
 
 This description of XMIR is not complete. If you want me to explain
-something else in more details, please post a message below this blog post
+something else in more detail, please post a message below this blog post
 and I will add the content.
 
 [xsd]: https://raw.githubusercontent.com/objectionary/eo/gh-pages/XMIR.xsd

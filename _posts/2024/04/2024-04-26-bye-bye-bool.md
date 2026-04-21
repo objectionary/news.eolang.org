@@ -7,7 +7,7 @@ author: maxonfjvipon
 ---
 After the [previous](https://news.eolang.org/2024-04-16-release-0-36-0.html) blog post, one of the
 followers brought an interesting suggestion in our Telegram [chat](https://t.me/eolang_org) (join it btw).
-He proposed getting rid of the object `bool` and making `if` an object not an atom.
+He proposed getting rid of the object `bool` and making `if` an object, not an atom.
 And it was quite interesting. So we made a new [release](https://github.com/objectionary/eo/releases/tag/0.37.0)
 where we followed our follower's proposal.
 
@@ -24,7 +24,7 @@ which decorate specific `bytes`, `01-` and `00-`, respectively.
   00- > @
 ```
 
-Such implementation has the next benefits:
+Such an implementation has the following benefits:
 - There's no way to create a boolean object with an unexpected amount of bytes.
 - We got rid of the atom `if` and defined it right inside `true` and `false`:
 

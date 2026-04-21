@@ -1,7 +1,7 @@
 ---
 layout: post
 date: 2023-09-04
-title: "MEMORY as a container for a real data"
+title: "MEMORY as a container for real data"
 author: maxonfjvipon
 ---
 

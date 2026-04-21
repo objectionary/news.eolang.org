@@ -36,7 +36,7 @@ try
   true
 ```
 
-We noticed quite some time ago that there are so many small objects with only the `@` attribute
+We noticed quite some time ago that there were so many small objects with only the `@` attribute
 bound. So, to simplify the code and reduce the number of indentations, we introduced new syntax for
 such objects:
 

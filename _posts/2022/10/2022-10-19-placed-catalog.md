@@ -12,13 +12,13 @@ You can check [`PlaceMojo`](https://github.com/objectionary/eo/blob/master/eo-ma
 class for exact logic of this step.
 All copied files are registered within "placed catalog," which is normally stored as
 `target/eo/placed.csv` file.
-Let's consider structure of the catalog in more details.
+Let's consider the structure of the catalog in more detail.
 
 <!--more-->
 
 Each entry within the catalog corresponds to a single file that has been copied.
 
-There are two kinds of entries. Entries of kind `class` corresponds to a file within JAR.
+There are two kinds of entries. Entries of kind `class` correspond to a file within a JAR.
 It can be `.class` or `.xml` or any other type of file which needs to be within classpath
 during compilation.
 Another kind, `jar`, represents dependency JAR file whose content has been copied.

@@ -8,7 +8,7 @@ author: yegor256
 There are "atoms" in [EO](https://www.eolang.org) language, which are objects implemented by
 the runtime platform, not by a composition of other EO objects. Most
 notable examples of atoms are `int.plus`, `float.times`, and
-`bool.while`. Here is a quick instruction to creating your own
+`bool.while`. Here is a quick guide to creating your own
 atoms.
 
 <!--more-->
@@ -76,7 +76,7 @@ all atoms and objects of `org.example` EO package. The `EO` prefix
 is used in order to enable EO naming inside Java name space.
 
 The class `PhDefault` is the parent of all Java atoms and I strongly
-recommend you use it too. You class should implement a single argument
+recommend you use it too. Your class should implement a single-argument
 constructor with a parameter of type `Phi`. If you don't have it,
 there will be a runtime error by reflection API: EO runtime won't
 be able to instantiate your class. The argument `sigma` you should pass
@@ -87,7 +87,7 @@ which you can later use inside the code encapsulated by the instance of the `AtC
 class.
 
 The attribute you add with `this.add("φ")` is the "body" of the atom.
-It will be evaluated when the atom will be dataized.
+It will be evaluated when the atom is dataized.
 
 Then, using the class `Param` you can get the value of any incoming attribute
 of your atom. The method `strong()` finds the attribute and dataizes it.

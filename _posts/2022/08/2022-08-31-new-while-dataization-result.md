@@ -18,10 +18,10 @@ is `FALSE`.
 
 When the condition is `TRUE` we get the result of the last dataization object in the `while` loop.
 
-When the condition is `FALSE` such dataization result becomes `FALSE`.
+When the condition is `FALSE`, such a dataization result becomes `FALSE`.
 
-Let's check it out with examples. In this case, the result of condition `x.lt 6`
-is `TRUE` for at least one iteration. So the result of dataization `when-true` object is `6`:
+Let's check it out with examples. In this case, the result of the condition `x.lt 6`
+is `TRUE` for at least one iteration. So the result of dataization of the `when-true` object is `6`:
 ```
 [] > when-true
   memory 3 > x
@@ -33,8 +33,8 @@ is `TRUE` for at least one iteration. So the result of dataization `when-true` o
         x
 ```
 
-And in this case, the result of condition `x.lt 6` was never `TRUE`, that's why the result
-of dataization `when-false` object is `FALSE`:
+And in this case, the result of the condition `x.lt 6` was never `TRUE`, that's why the result
+of dataization of the `when-false` object is `FALSE`:
 ```
 [] > when-false
   memory 10 > x

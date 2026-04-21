@@ -18,20 +18,20 @@ the `gh-pages` branch of this library to [Objectionary Home](https://github.com/
 Until recently, the last stage was performed manually with the help of a script that added modified files by the
 library's URL, after which a pull request was created. And that stage consisted of the following steps:
 
-1.To create a pull request in `objectionary/home` by `pull.sh` script in a separate git branch (the name of the branch doesn't matter):
+1. To create a pull request in `objectionary/home` via the `pull.sh` script in a separate git branch (the name of the branch doesn't matter):
    ```shell
    ./pull.sh objectionary/eo
    ```
-This update all `.eo` files in `gh-pages` from `objectionary/eo`.
-It also changes the corresponding versions of the eo objects (e.g. from the `+version` metadata) in the `objectionary/home` repository.
+This updates all `.eo` files in `gh-pages` from `objectionary/eo`.
+It also changes the corresponding versions of the EO objects (e.g. from the `+version` metadata) in the `objectionary/home` repository.
 
-2.To check and to remove manually either unused or old files. Script didn't do it.
+2. To manually check and remove either unused or old files. The script didn't do it.
 
-3.To update `eo.version` in `pom.xml` in `objectionary/home`.
+3. To update `eo.version` in `pom.xml` in `objectionary/home`.
 
-4.Finally, all `todo` must be removed manually.
+4. Finally, all `todo` must be removed manually.
 
-To avoid manual changes we created auto pulling daily run script. It runs once an hour every day to check for new releases of [Objectionary](https://github.com/objectionary/) libraries.
+To avoid manual changes, we created an auto-pulling daily run script. It runs once an hour every day to check for new releases of [Objectionary](https://github.com/objectionary/) libraries.
 If a new release is found, the script creates a new pull request with corresponding changes. This process ensures that our codebase
 is always up-to-date and optimized.
 

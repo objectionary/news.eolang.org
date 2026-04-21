@@ -55,7 +55,7 @@ Finally, you need [Cactoos](https://github.com/yegor256/cactoos/) and
 </dependency>
 ```
 
-Now, you are ready to parse a EO program to XMIR:
+Now, you are ready to parse an EO program to XMIR:
 
 ```java
 import java.io.ByteArrayOutputStream;

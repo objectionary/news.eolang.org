@@ -17,7 +17,7 @@ object-oriented programming languages, including EO.
 From now on, it is possible to convert a program written in EO to a φ-calculus expression.
 Here's how you can accomplish this in your personal project.
 
-First you need to add `eo-maven-plugin` dependency:
+First, you need to add the `eo-maven-plugin` dependency:
 ```xml
 <dependency>
   <groupId>org.eolang</groupId>
@@ -90,7 +90,7 @@ For this, your build pipeline should look like:
 </build>
 ```
 
-When it's done result `.eo` files are placed in output `printOutputDir` directory.
+When it's done, the resulting `.eo` files are placed in the output `printOutputDir` directory.
 
 Here's an example of how the EO Fibonacci program looks in φ-calculus (you can find more examples
 [here](https://github.com/objectionary/eo/tree/master/eo-maven-plugin/src/test/resources/org/eolang/maven/phi)):

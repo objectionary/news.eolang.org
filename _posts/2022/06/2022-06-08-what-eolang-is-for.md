@@ -1,7 +1,7 @@
 ---
 layout: post
 date: 2022-06-08
-title: "What EO is for?"
+title: "What Is EO For?"
 author: yegor256
 ---
 
@@ -10,7 +10,7 @@ EO is not planning to become a mainstream language&mdash;this is not what
 we want. Our main goal is to prove to ourselves that true object-oriented
 programming is practically possible. Not just in books and abstract
 examples, but in real code that works. That's why EO is being created&mdash;to
-put all that "crazy" pure object-oriented ideas into practice and
+put all those "crazy" pure object-oriented ideas into practice and
 see whether they can work.
 
 <!--more-->

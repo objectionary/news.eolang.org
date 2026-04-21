@@ -1,11 +1,11 @@
 ---
 layout: post
 date: 2022-07-18
-title: "Introduced 'error' Object and new semantic of 'try' Object"
+title: "Introduced 'error' Object and New Semantics of 'try' Object"
 author: Graur
 ---
 
-Since 0.25.0 version it is possible to use
+Since version 0.25.0 it is possible to use
 [`error`](https://github.com/objectionary/home/blob/master/objects/org/eolang/error.eo)
 object just like this:
 
@@ -21,7 +21,7 @@ Here, the object `error` causes program termination at the first attempt to data
 It encapsulates any other object, which can play the role of an exception that is
 floating to the upper level.
 
-The object `try` enables the catching of an `error` objects and extracting exceptions from them.
+The object `try` enables the catching of `error` objects and extracting exceptions from them.
 For example, the following code prints "The 1th argument of 'int.div' is invalid: division by zero is infinity" and then "finally":
 
 ```
@@ -62,8 +62,8 @@ eq. > @
   "Start index + length must not exceed string length but was 12 > 11"
 ```
 
-Here, we get `TRUE` because `string.slice` object uses `error` object.
-Which encapsulates the error message "Start index + length must not exceed string length but was 12 > 11".
+Here, we get `TRUE` because the `string.slice` object uses the `error` object,
+which encapsulates the error message "Start index + length must not exceed string length but was 12 > 11".
 The first `try` object throws up this encapsulated string to the second `try` object.
 
 In addition, you can add new behavior to catch errors, or just use them as is.

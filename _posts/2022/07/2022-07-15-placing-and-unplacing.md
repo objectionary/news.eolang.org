@@ -8,7 +8,7 @@ author: yegor256
 The entire process of packaging EO objects and atoms into JAR artifacts
 is explained in this blog post:
 [Objectionary: Dictionary and Factory for EO Objects](https://www.yegor256.com/2021/10/21/objectionary.html).
-It's pretty straight forward. However, there is one tricky situation
+It's pretty straightforward. However, there is one tricky situation
 related to placing compiled Java binaries into the JAR. This process
 may go wrong and sometimes it does. In version 0.24.0 of
 [our Maven plugin](https://github.com/objectionary/eo/tree/master/eo-maven-plugin) we
@@ -31,7 +31,7 @@ which some `.eo` objects point to by means of `+rt` meta. The artifacts
 are downloaded, unpacked, and then placed into `target/classes`.
 
 Finally, it's time to package your own JAR and release it to Maven Central.
-Obviously, we don't want all the files. previously placed into `target/classes`,
+Obviously, we don't want all the files previously placed into `target/classes`
 to be packaged into the JAR. We only want those that were compiled from _your_
 source `.java` files. We don't even want those `.class` files that were
 compiled from the auto-generated `.java` from your `.eo` objects.
@@ -88,12 +88,12 @@ To make its behavior fully explicit, you may use one of these two options (or bo
 
 This configuration will ensure that only `EOorg/EOeolang/EOfoo/**` files
 will stay in `target/classes` before the JAR is packaged. Also, if for
-some magic reason `EOorg/EOeolang/**.class` will remain their, they will
+some magic reason `EOorg/EOeolang/**.class` files remain there, they will
 also be deleted.
 
 First, only what is mentioned in `keepBinaries` will stay.
 Second, what is mentioned in `removeBinaries` will be deleted.
 
-I think it's a good practice to use `keepBinaries` option in your
+I think it's a good practice to use the `keepBinaries` option in your
 library, just to be safe and sure that nothing aside from your compiled
-atoms get into the JAR.
+atoms gets into the JAR.

@@ -65,8 +65,8 @@ This may look counter-intuitive, but only because you may be used to imperative
 loops in Java or Python, where variables are mutable and evaluations are "eager."
 In EO we have the opposite paradigm: variables are immutable and, more importantly,
 evaluations are "[lazy](https://en.wikipedia.org/wiki/Lazy_evaluation)." Making the
-body of the loop affecting the condition of it --- this is what conflicts with the
-laziness nature of EO.
+body of the loop affect its condition --- this is what conflicts with the
+lazy nature of EO.
 
 An imperative algorithm checks the head of the loop (the condition) and then,
 if the head was true, it evaluates the body. If the head was false, the algorithm
@@ -75,7 +75,7 @@ works in C++, Java, and other object-oriented imperative languages.
 
 To the contrary, expecting the algorithm to be declarative and lazy would entail
 it 1) to return the result of the last evaluation of the body and 2) to not
-evaluate it. In other words, a declarative and lazy loop equals to its body,
+evaluate it. In other words, a declarative and lazy loop equals its body,
 evaluated until the head is false.
 
 The new declarative version of the `while` object in EO behaves exactly this way:
