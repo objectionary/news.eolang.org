@@ -10,6 +10,10 @@ Here is a full list of papers about 𝜑-calculus,
 [Polystat](https://www.polystat.org),
 and other related projects (in reverse chronological order):
 
+* Yegor Bugayenko, Maxim Trunnikov, Vladimir Zakharov (2026),
+[Compile-Time Java Stream Fusion via mapMulti](https://dl.acm.org/doi/10.1145/3814987.3814988),
+Proceedings of the 15th ACM SIGPLAN International Workshop on the State Of the Art in Program Analysis (SOAP'26).
+
 * Yegor Bugayenko and Mikhail Lipanin (2023),
 [An Algorithm for Partial Elimination of Jumps in an Object-Oriented Dataflow Language](https://dl.acm.org/doi/10.1145/3638584.3638679),
 Proceedings of the 7th International Conference on Computer Science and Artificial Intelligence (CSAI).
