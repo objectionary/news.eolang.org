@@ -53,8 +53,8 @@ Proceedings of the 24th ACM International Workshop on Formal Techniques for Java
 [Reducing Programs to Objects](https://arxiv.org/abs/2112.11988),
 arXiv
 
-* Yegor Bugayenko (2021),
-[EOLANG and 𝜑-calculus](https://arxiv.org/abs/2111.13384),
+* Yegor Bugayenko, Maxim Trunnikov (2021),
+[𝜑-Calculus: Object-Oriented Formalism](https://arxiv.org/abs/2111.13384),
 arXiv
 
 * Hadi Saleh, Joseph Afriyie Attakorah, Sergey Zykov, Alexander Legalov (2021),
