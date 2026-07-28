@@ -1,0 +1,60 @@
+# News About EO Programming Language
+
+> This blog publishes news, design notes, and technical explanations
+  about [EO](https://www.eolang.org) (also spelled EOLANG),
+  an experimental object-oriented programming language,
+  and about 𝜑-calculus, the formal calculus behind it.
+  Posts are written by the R&D team of
+  [Objectionary](https://www.objectionary.com),
+  the group that designs the language and builds its compiler.
+
+EO is a small object-oriented language in which a program is nothing but
+  objects: formation, application, dispatch, and data.
+It has no classes, no inheritance, no static methods, no NULL,
+  no mutability, no reflection, no annotations, and no flow-control
+  statements — `if`, `while`, and `seq` are objects too.
+Its semantics is defined by 𝜑-calculus, a formalism with a handful
+  of rewriting rules, so the whole language is small enough to reason
+  about formally.
+
+The purpose of the language is research, not comfort.
+Object-oriented code is cheap for programmers to write and expensive
+  for computers to run, mostly because dynamic dispatch, mutability,
+  and reflection block the optimizations a compiler would otherwise
+  apply.
+Forty years of workarounds — inline caches, customization, type
+  feedback, class hierarchy analysis, escape analysis — treat the
+  symptoms inside the compiler.
+EO takes the other road and changes the language instead, betting that
+  any object-oriented program can be reduced to EO, normalized as
+  𝜑-expressions, and then compiled into binaries faster than the ones
+  produced from the original source.
+
+Because posts here discuss a moving target, older ones may describe
+  syntax and semantics that the language has since abandoned.
+Always check the publication date before treating a post as current.
+
+## The Blog
+
+- [Home page](https://news.eolang.org/): most recent posts, paginated
+- [All articles](https://news.eolang.org/contents.html): every post in reverse chronological order
+- [Papers](https://news.eolang.org/papers.html): academic publications about EO, 𝜑-calculus, and related projects
+- [RSS feed](https://news.eolang.org/rss.xml): full text of recent posts
+- [Sitemap](https://news.eolang.org/sitemap.xml): all pages and posts
+- [Sources](https://github.com/objectionary/news.eolang.org): the Jekyll sources of this blog, where corrections are welcome
+
+## Start Here
+
+- [What EOLANG Is For](https://news.eolang.org/2022-06-08-what-eolang-is-for.html): why the language exists, in short
+- [The Problem We Solve](https://news.eolang.org/2026-07-28-the-problem-we-solve.html): the performance cost of objects, the literature about it, and our bet
+
+## The Language
+
+- [EO home page](https://www.eolang.org): syntax, tutorial, and downloads
+- [Objectionary](https://www.objectionary.com): the organization behind the language
+- [eo](https://github.com/objectionary/eo): the compiler, written in Java
+- [eo-phi-normalizer](https://github.com/objectionary/eo-phi-normalizer): rewriting rules over 𝜑-expressions
+- [proof](https://github.com/objectionary/proof): Lean proofs about the calculus, including confluence of the rules
+- [jeo-maven-plugin](https://github.com/objectionary/jeo-maven-plugin): disassembles Java bytecode into EO
+- [hone-maven-plugin](https://github.com/objectionary/hone-maven-plugin): optimizes Java bytecode through EO and back
+- [𝜑-calculus paper](https://arxiv.org/abs/2111.13384): the formal definition of the semantics
