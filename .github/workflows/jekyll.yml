@@ -16,7 +16,7 @@ concurrency:
 jobs:
   jekyll:
     timeout-minutes: 15
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v6
       - uses: ruby/setup-ruby@v1
@@ -28,7 +28,7 @@ jobs:
       - run: bundle exec jekyll build
   telegram:
     needs: jekyll
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     if: ${{ always() && github.event_name == 'push' }}
     permissions:
       actions: read
