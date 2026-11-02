@@ -19,5 +19,4 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7
-        if: false
       - uses: fsfe/reuse-action@v6
