@@ -5,7 +5,7 @@
 Check this blog at [news.eolang.org](https://news.eolang.org).
 
 You are welcome to submit corrections to this blog. In order to do that,
-you will need [Ruby](https://www.ruby-lang.org/en/) 2.6+ and
+you will need [Ruby](https://www.ruby-lang.org/en/) 2.7+ and
 [Bundler](https://bundler.io/). Then, run this:
 
 ```bash
