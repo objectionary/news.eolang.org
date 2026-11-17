@@ -93,7 +93,7 @@ here is how:
 ```java
 XML after = new Xsline(
   new TrClasspath<>(
-    new ParsingTrain()
+    new ParsingTrain(),
     "/org/eolang/parser/add-refs.xsl",
     "/org/foo/simple.xsl"
   ).back()
