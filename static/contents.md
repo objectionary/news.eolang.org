@@ -21,9 +21,9 @@ Total: {{ site.posts.size }}.
     </div>
     <ul class="subline">
       <li>
-        <time itemprop="author">
+        <span itemprop="author">
           <a href="https://github.com/{{ post.author }}">@{{ post.author }}</a>
-        </time>
+        </span>
       </li>
       <li>
         <time itemprop="datePublished dateModified" datetime="{{ post.date | date_to_xmlschema }}">
